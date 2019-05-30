@@ -12,7 +12,7 @@ function fetchUserList() {
                 const userListItem = buildUserListItem(user);
             list.appendChild(userListItem);
             });
-        });
+    });
 }
 
 /**
