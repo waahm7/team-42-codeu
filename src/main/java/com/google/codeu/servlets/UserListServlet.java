@@ -2,6 +2,7 @@ package com.google.codeu.servlets;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.appengine.repackaged.com.google.gson.Gson;
 import com.google.codeu.data.Datastore;
 
 import javax.servlet.annotation.WebServlet;
@@ -23,10 +24,12 @@ public class UserListServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        
-        Set<String> users=datastore.getUsers();
-        for(String user:users)
-            response.getOutputStream().println(user);
+
+        response.setContentType("application/json");
+        Set<String> users = datastore.getUsers();
+        Gson gson = new Gson();
+        String json = gson.toJson(users);
+        response.getOutputStream().println(json);
 
     }
 }
