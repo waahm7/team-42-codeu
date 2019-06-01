@@ -37,14 +37,16 @@ public class AboutMeServlet extends HttpServlet {
 
     String user = request.getParameter("user");
 
-    if(user == null || user.equals("")) {
+    if(user == null || user.isEmpty()) {
       // Request is invalid, return empty response
+      response.getOutputStream().println("Invalid user");
       return;
     }
 
     User userData = datastore.getUser(user);
 
     if(userData == null || userData.getAboutMe() == null) {
+      response.getOutputStream().println("User Data Not Found");
       return;
     }
 
