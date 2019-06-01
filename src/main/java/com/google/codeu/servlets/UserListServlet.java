@@ -1,8 +1,7 @@
 package com.google.codeu.servlets;
 
-import com.google.appengine.repackaged.com.google.gson.Gson;
 import com.google.codeu.data.Datastore;
-
+import com.google.gson.Gson;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
