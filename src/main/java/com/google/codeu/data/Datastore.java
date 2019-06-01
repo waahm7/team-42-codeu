@@ -24,9 +24,12 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 import com.google.appengine.api.datastore.FetchOptions;
+
 
 /** Provides access to the data stored in Datastore. */
 public class Datastore {
@@ -87,5 +90,45 @@ public class Datastore {
       PreparedQuery results = datastore.prepare(query);
       return results.countEntities(FetchOptions.Builder.withLimit(1000));
     }
+
+  /*
+  * Returns list of users that at least sent a message
+  * */
+  public Set<String> getUsers(){
+    Set<String> users = new HashSet<>();
+    Query query = new Query("Message");
+    PreparedQuery results = datastore.prepare(query);
+    for(Entity entity : results.asIterable()) {
+      users.add((String) entity.getProperty("user"));
+    }
+    return users;
+  }
+
+  public List<Message> getAllMessages(){
+    List<Message> messages = new ArrayList<>();
+
+    Query query = new Query("Message")
+            .addSort("timestamp", SortDirection.DESCENDING);
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+        String idString = entity.getKey().getName();
+        UUID id = UUID.fromString(idString);
+        String user = (String) entity.getProperty("user");
+        String text = (String) entity.getProperty("text");
+        long timestamp = (long) entity.getProperty("timestamp");
+
+        Message message = new Message(id, user, text, timestamp);
+        messages.add(message);
+      } catch (Exception e) {
+        System.err.println("Error reading message.");
+        System.err.println(entity.toString());
+        e.printStackTrace();
+      }
+    }
+
+    return messages;
+  }
 
 }
