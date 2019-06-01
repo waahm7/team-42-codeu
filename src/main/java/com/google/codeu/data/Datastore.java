@@ -34,7 +34,6 @@ public class Datastore {
 
   public Datastore() {
     datastore = DatastoreServiceFactory.getDatastoreService();
-	
   }
 
   /** Stores the Message in Datastore. */
