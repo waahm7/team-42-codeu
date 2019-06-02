@@ -28,4 +28,6 @@ public class UserListServlet extends HttpServlet {
 
     }
     intentional error
+    intentional error2
+
 }
