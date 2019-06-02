@@ -27,7 +27,5 @@ public class UserListServlet extends HttpServlet {
         response.getOutputStream().println(gson.toJson(datastore.getUsers()));
 
     }
-    intentional error
-    intentional error2
-
+ 
 }
