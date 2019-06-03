@@ -120,8 +120,7 @@ public class Datastore {
   
   return user;
  }
-// =======
-// >>>>>>> master
+
   /*
   * Returns list of users that at least sent a message
   * */
