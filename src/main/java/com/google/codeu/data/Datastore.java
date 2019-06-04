@@ -84,7 +84,6 @@ public class Datastore {
     return messages;
   }
 
-// <<<<<<< statspage-azan
       /** Returns the total number of messages for all users. */
     public int getTotalMessageCount(){
       Query query = new Query("Message");
@@ -92,7 +91,6 @@ public class Datastore {
       return results.countEntities(FetchOptions.Builder.withLimit(1000));
     }
 
-// =======
   /** Stores the User in Datastore. */
  public void storeUser(User user) {
   Entity userEntity = new Entity("User", user.getEmail());
