@@ -45,3 +45,10 @@
 .hidden {
   display: none;
 }
+
+/* to change the style of the image */
+.message-body img {
+  display: block;
+  margin-top: 15px;
+  max-width: 40%;
+}
