@@ -17,10 +17,15 @@
         statsContainer.innerHTML = '';
 
         const messageCountElement = buildStatElement('Message count: ' + stats.messageCount);
-        statsContainer.appendChild(messageCountElement);
-
         const userCountElement = buildStatElement('User count: ' + stats.userCount);
+        const LongestMessage = buildStatElement('Longest Message: ' + stats.LongestMessage);
+        const LongestMessageLenght = buildStatElement('Longest Message Length: ' + stats.LongestMessageLenght);
+              
+        statsContainer.appendChild(messageCountElement);
         statsContainer.appendChild(userCountElement);
+        statsContainer.appendChild(LongestMessage);
+        statsContainer.appendChild(LongestMessageLenght);        
+     
       });
     }
 
