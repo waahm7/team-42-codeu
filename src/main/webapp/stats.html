@@ -18,6 +18,9 @@
 
         const messageCountElement = buildStatElement('Message count: ' + stats.messageCount);
         statsContainer.appendChild(messageCountElement);
+
+        const userCountElement = buildStatElement('User count: ' + stats.userCount);
+        statsContainer.appendChild(userCountElement);
       });
     }
 
@@ -30,10 +33,11 @@
     // Fetch data and populate the UI of the page.
     function buildUI(){
      fetchStats();
+     addNaviMenues(); 
     }
   </script>
 </head>
-<body onload="addNaviMenues(); buildUI()">
+<body onload="buildUI()">
     <nav>
       <ul class = "topnav" id="navigation">
       </ul>
