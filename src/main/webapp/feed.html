@@ -4,10 +4,15 @@
     <title>Message Feed</title>
     <link rel="stylesheet" href="/css/main.css">
     <link rel="stylesheet" href="/css/user-page.css">
+    <script src="/js/navigation-loader.js"></script>
 
     <script src="/js/feed.js"> </script>
 </head>
-<body onload="buildUI()">
+<body onload="addNaviMenues(); buildUI();">
+    <nav>
+        <ul class = "topnav" id="navigation">
+        </ul>
+    </nav>
 <div id="content">
     <h1>Message Feed</h1>
     <hr/>

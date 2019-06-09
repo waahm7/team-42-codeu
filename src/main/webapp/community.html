@@ -4,19 +4,19 @@
     <title>Community Page</title>
     <link rel="stylesheet" href="/css/main.css">
     <script src="/js/community.js"></script>
+    <script src="/js/navigation-loader.js"></script>
+
 
 </head>
-<body onload="buildUI()">
+<body onload="addNaviMenues(); buildUI()">
 
 <div id="content">
-    <nav>
-        <ul id="navigation">
-            <li><a href="/">Home</a></li>
-            <li><a href="/aboutus.html">About Our Team</a></li>
-            <li><a href="/community.html">Community</a></li>
-
-        </ul>
-    </nav>
+    <body onload="addNaviMenues();">
+        <nav>
+          <ul class = "topnav" id="navigation">
+          </ul>
+        </nav>
+    
 
     <h1>Community Page</h1>
     <p>Here is a list of every user who has posted a message:</p>
