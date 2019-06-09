@@ -33,8 +33,10 @@ public class StatsPageServlet extends HttpServlet{
     response.setContentType("application/json");
 
     int messageCount = datastore.getTotalMessageCount();
-
+    int userCount = datastore.getTotalUserCount();
     JsonObject jsonObject = new JsonObject();
+
+    jsonObject.addProperty("userCount", userCount);
     jsonObject.addProperty("messageCount", messageCount);
     response.getOutputStream().println(jsonObject.toString());
   }
