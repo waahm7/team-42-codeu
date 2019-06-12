@@ -21,6 +21,11 @@
   max-width: 600px;
 } */
 
+body, html {
+	height: 100%;
+	font-family: Poppins-Regular, sans-serif;
+}
+
 /* Remove bullet points from navigation bar. */
 nav ul {
   list-style-type: none;
