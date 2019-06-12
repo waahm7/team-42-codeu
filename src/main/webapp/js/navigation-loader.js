@@ -47,6 +47,11 @@ function addLoginOrLogoutLinkToNavigation() {
 
 function addNaviMenues(){
   const navigationElement = document.getElementById('navigation');
+  if (!navigationElement) {
+    console.warn('Navigation element not found!');
+    return;
+  }
+
   navigationElement.appendChild(
     createListItem(createLink('/index.html', 'Home')));
   navigationElement.appendChild(
