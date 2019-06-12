@@ -41,7 +41,25 @@ function addLoginOrLogoutLinkToNavigation() {
               createListItem(createLink('/login', 'Login')));
         }
       });
+    
+
 }
+
+function addNaviMenues(){
+  const navigationElement = document.getElementById('navigation');
+  navigationElement.appendChild(
+    createListItem(createLink('/index.html', 'Home')));
+  navigationElement.appendChild(
+    createListItem(createLink('/aboutus.html', 'About Us')));
+  navigationElement.appendChild(
+    createListItem(createLink('/stats.html', 'Statisics')));
+  navigationElement.appendChild(
+    createListItem(createLink('/community.html', 'Community')));
+  navigationElement.appendChild(
+     createListItem(createLink('/feed.html', 'Feeds')));
+  addLoginOrLogoutLinkToNavigation();
+  }
+
 
 /**
  * Creates an li element.

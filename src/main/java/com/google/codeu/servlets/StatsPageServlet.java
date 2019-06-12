@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.appengine.api.mail.MailService.Message;
 import com.google.codeu.data.Datastore;
 import com.google.gson.JsonObject;
 
@@ -33,9 +34,14 @@ public class StatsPageServlet extends HttpServlet{
     response.setContentType("application/json");
 
     int messageCount = datastore.getTotalMessageCount();
+    int userCount = datastore.getTotalUserCount();
+    com.google.codeu.data.Message LongestMessage = datastore.LongestMessage();
 
     JsonObject jsonObject = new JsonObject();
+    jsonObject.addProperty("userCount", userCount);
     jsonObject.addProperty("messageCount", messageCount);
+    jsonObject.addProperty("LongestMessage", LongestMessage.getText());
+    jsonObject.addProperty("LongestMessageLenght", LongestMessage.getText().length());
     response.getOutputStream().println(jsonObject.toString());
   }
 }
