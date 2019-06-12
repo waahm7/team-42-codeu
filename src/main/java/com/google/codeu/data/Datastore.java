@@ -84,22 +84,19 @@ public class Datastore {
     return messages;
   }
 
+/** Returns the total number of messages for all users. */
+  public int getTotalMessageCount(){
+    Query query = new Query("Message");
+    PreparedQuery results = datastore.prepare(query);
+    return results.countEntities(FetchOptions.Builder.withLimit(1000));
+  }
 
-
-  
-      /** Returns the total number of messages for all users. */
-    public int getTotalMessageCount(){
-      Query query = new Query("Message");
-      PreparedQuery results = datastore.prepare(query);
-      return results.countEntities(FetchOptions.Builder.withLimit(1000));
-    }
-
-    /** Returns the total number of users for in site. */
-    public int getTotalUserCount(){
-      Query query = new Query("User");
-      PreparedQuery results = datastore.prepare(query);
-      return results.countEntities(FetchOptions.Builder.withLimit(1000));
-    }
+  /** Returns the total number of users for in site. */
+  public int getTotalUserCount(){
+    Query query = new Query("User");
+    PreparedQuery results = datastore.prepare(query);
+    return results.countEntities(FetchOptions.Builder.withLimit(1000));
+  }
 
   /** Stores the User in Datastore. */
  public void storeUser(User user) {
@@ -193,18 +190,17 @@ public class Datastore {
       }
     }
 
-      int largestString = messages.get(0).getText().length();
-      int index = 0;
+    int largestString = messages.get(0).getText().length();
+    int index = 0;
 
-      for(int i = 0; i < messages.size(); i++)
+    for(int i = 0; i < messages.size(); i++)
+    {
+      if(messages.get(i).getText().length() > largestString)
       {
-          if(messages.get(i).getText().length() > largestString)
-          {
-              largestString = messages.get(i).getText().length();
-                              index = i;
-          }
+          largestString = messages.get(i).getText().length();
+          index = i;
       }
-
+    }
     return messages.get(index);
   }
 
