@@ -38,7 +38,7 @@ function addLoginOrLogoutLinkToNavigation() {
               createListItem(createLink('/logout', 'Logout')));
         } else {
           navigationElement.appendChild(
-              createListItem(createLink('/login', 'Login')));
+              createListItem(createLink('/login.html', 'Login')));
         }
       });
     
@@ -52,19 +52,19 @@ function addNaviMenues(){
     return;
   }
 
-  navigationElement.appendChild(
-    createListItem(createLink('/index.html', 'Home')));
-  navigationElement.appendChild(
-    createListItem(createLink('/aboutus.html', 'About Us')));
-  navigationElement.appendChild(
-    createListItem(createLink('/stats.html', 'Statisics')));
-  navigationElement.appendChild(
-    createListItem(createLink('/community.html', 'Community')));
-  navigationElement.appendChild(
-    createListItem(createLink('/feed.html', 'Feeds')));
-  navigationElement.appendChild(
-    createListItem(createLink('/translate-page.html', 'Translate')));
-  addLoginOrLogoutLinkToNavigation();
+    navigationElement.appendChild(
+      createListItem(createLink('/index.html', 'Home')));
+    navigationElement.appendChild(
+      createListItem(createLink('/aboutus.html', 'About Us')));
+    navigationElement.appendChild(
+      createListItem(createLink('/stats.html', 'Statisics')));
+    navigationElement.appendChild(
+      createListItem(createLink('/community.html', 'Community')));
+    navigationElement.appendChild(
+      createListItem(createLink('/feed.html', 'Feeds')));
+    navigationElement.appendChild(
+      createListItem(createLink('/translate-page.html', 'Translate')));
+    addLoginOrLogoutLinkToNavigation();
   }
 
 
