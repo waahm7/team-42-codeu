@@ -58,7 +58,7 @@ function addNaviMenues(){
   navigationElement.appendChild(
     createListItem(createLink('/feed.html', 'Feeds')));
   navigationElement.appendChild(
-    createListItem(createLink('/translation-page.html', 'Translate')));
+    createListItem(createLink('/translate-page.html', 'Translate')));
   addLoginOrLogoutLinkToNavigation();
   }
 
