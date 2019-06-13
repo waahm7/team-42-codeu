@@ -49,6 +49,7 @@ public class Opportunity {
         }
         this.recurring = recurring;
     }
+
     public Opportunity(int id, String title, String description, String applyLink, ArrayList<String> requirements, ArrayList<String> additionalLinks, String dueDate, String startDate) {
         this.id = id;
         this.title = title;
