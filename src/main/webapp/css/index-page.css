@@ -16,5 +16,5 @@
 
 /* Change the index page background. */
 body{
-	  background-color: #333;
+	  background: url("../images/index-1.jpg");
 }
