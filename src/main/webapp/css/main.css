@@ -15,15 +15,8 @@
  */
 
 /* Prevent the page from becoming too wide. */
-
-
-/* body {
+body {
   max-width: 600px;
-} */
-
-body, html {
-	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
 }
 
 /* Remove bullet points from navigation bar. */
