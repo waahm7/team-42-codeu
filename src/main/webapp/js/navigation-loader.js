@@ -31,14 +31,28 @@ function addLoginOrLogoutLinkToNavigation() {
       })
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
-          navigationElement.appendChild(createListItem(createLink(
-              '/user-page.html?user=' + loginStatus.username, 'Your Page')));
 
-          navigationElement.appendChild(
+             navigationElement.appendChild(
               createListItem(createLink('/logout', 'Logout')));
+            navigationElement.appendChild(
+              createListItem(createLink('/stats.html', 'Statisics')));
+            navigationElement.appendChild(
+              createListItem(createLink('/community.html', 'Community')));
+            navigationElement.appendChild(
+              createListItem(createLink('/feed.html', 'Feeds')));
+            navigationElement.appendChild(
+              createListItem(createLink('/translate-page.html', 'Translate')));
+             navigationElement.appendChild(createListItem(createLink(
+                          '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+
         } else {
-          navigationElement.appendChild(
+
+           navigationElement.appendChild(
+              createListItem(createLink('/aboutus.html', 'About Us')));
+           navigationElement.appendChild(
               createListItem(createLink('/login', 'Login')));
+           navigationElement.appendChild(
+              createListItem(createLink('/index.html', 'Home')));
         }
       });
     
@@ -51,19 +65,6 @@ function addNaviMenues(){
     console.warn('Navigation element not found!');
     return;
   }
-
-  navigationElement.appendChild(
-    createListItem(createLink('/index.html', 'Home')));
-  navigationElement.appendChild(
-    createListItem(createLink('/aboutus.html', 'About Us')));
-  navigationElement.appendChild(
-    createListItem(createLink('/stats.html', 'Statisics')));
-  navigationElement.appendChild(
-    createListItem(createLink('/community.html', 'Community')));
-  navigationElement.appendChild(
-    createListItem(createLink('/feed.html', 'Feeds')));
-  navigationElement.appendChild(
-    createListItem(createLink('/translate-page.html', 'Translate')));
   addLoginOrLogoutLinkToNavigation();
   }
 

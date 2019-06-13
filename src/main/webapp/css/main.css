@@ -15,8 +15,10 @@
  */
 
 /* Prevent the page from becoming too wide. */
-body {
-  max-width: 600px;
+html, body {
+   /*max-width: 600px;*/
+   margin: 0;
+   height: 100%;
 }
 
 /* Remove bullet points from navigation bar. */
@@ -28,21 +30,22 @@ nav ul {
 
 /* Keep navigation menu on one line. */
 nav li {
-  display: inline-block;
+  /*display: inline-block;*/
   margin-right: 10px
+  position:absolute;
+  top: 0;
 }
 
 /* Add a black background color to the top navigation */
 .topnav {
-  background-color: #333;
+  background-color: #080000 ;
   overflow: hidden;
 }
 
 /* Style the links inside the navigation bar */
 .topnav a {
-  float: left;
+  float: right;
   color: #f2f2f2;
-  text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
