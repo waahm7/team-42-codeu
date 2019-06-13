@@ -31,9 +31,8 @@ function addLoginOrLogoutLinkToNavigation() {
       })
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
-
-             navigationElement.appendChild(
-              createListItem(createLink('/logout', 'Logout')));
+            navigationElement.appendChild(createListItem(createLink(
+              '/user-page.html?user=' + loginStatus.username, 'Your Page')));
             navigationElement.appendChild(
               createListItem(createLink('/stats.html', 'Statisics')));
             navigationElement.appendChild(
@@ -42,17 +41,17 @@ function addLoginOrLogoutLinkToNavigation() {
               createListItem(createLink('/feed.html', 'Feeds')));
             navigationElement.appendChild(
               createListItem(createLink('/translate-page.html', 'Translate')));
-             navigationElement.appendChild(createListItem(createLink(
-                          '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+            navigationElement.appendChild(
+              createListItem(createLink('/logout', 'Logout')));
 
         } else {
 
            navigationElement.appendChild(
-              createListItem(createLink('/aboutus.html', 'About Us')));
+              createListItem(createLink('/index.html', 'CS Opportunities Portal for Pakistani Students   ')));
            navigationElement.appendChild(
               createListItem(createLink('/login', 'Login')));
            navigationElement.appendChild(
-              createListItem(createLink('/index.html', 'Home')));
+              createListItem(createLink('/aboutus.html', 'About Us')));
         }
       });
     
