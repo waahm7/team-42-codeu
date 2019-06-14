@@ -27,20 +27,30 @@ import java.util.Date;
 public class Opportunity {
 
     private int id;
+    private int minAge,maxAge;
     private String title, description;
     private String applyLink;
-    private ArrayList<String> requirements, additionalLinks;
+    private String advertisementImageUrl;
+    //Requirements
+    private String gender, eductationLevel;
+    private ArrayList<String> otherRequirments, additionalLinks;
     private Date dueDate, startDate;
     private boolean recurring;
 
 
-    public Opportunity(int id, String title, String description, String applyLink, ArrayList<String> requirements, ArrayList<String> additionalLinks, String dueDate, String startDate, boolean recurring) {
+
+    public Opportunity(int id,int minAge,int maxAge, String title, String description, String applyLink,String advertisementImageUrl, String gender, String eductationLevel, ArrayList<String> otherRequirments, ArrayList<String> additionalLinks, String dueDate, String startDate, boolean recurring) {
         this.id = id;
+        this.minAge=minAge;
+        this.maxAge=maxAge;
         this.title = title;
         this.description = description;
         this.applyLink = applyLink;
-        this.requirements = requirements;
+        this.otherRequirments = otherRequirments;
         this.additionalLinks = additionalLinks;
+        this.advertisementImageUrl=advertisementImageUrl;
+        this.gender = gender;
+        this.eductationLevel = eductationLevel;
         try {
             this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
             this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
@@ -50,13 +60,19 @@ public class Opportunity {
         this.recurring = recurring;
     }
 
-    public Opportunity(int id, String title, String description, String applyLink, ArrayList<String> requirements, ArrayList<String> additionalLinks, String dueDate, String startDate) {
+    public Opportunity(int id,int minAge, int maxAge, String title, String description, String applyLink,String advertisementImageUrl, String gender, String eductationLevel, ArrayList<String> otherRequirments, ArrayList<String> additionalLinks, String dueDate, String startDate) {
         this.id = id;
+        this.minAge=minAge;
+        this.maxAge=maxAge;
         this.title = title;
         this.description = description;
         this.applyLink = applyLink;
-        this.requirements = requirements;
+        this.otherRequirments = otherRequirments;
         this.additionalLinks = additionalLinks;
+        this.gender = gender;
+        this.advertisementImageUrl=advertisementImageUrl;
+        this.eductationLevel = eductationLevel;
+
         try {
             this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
             this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
@@ -66,6 +82,45 @@ public class Opportunity {
         this.recurring = false;
     }
 
+    public int getMinAge() {
+        return minAge;
+    }
+
+    public void setMinAge(int minAge) {
+        this.minAge = minAge;
+    }
+
+    public int getMaxAge() {
+        return maxAge;
+    }
+
+    public void setMaxAge(int maxAge) {
+        this.maxAge = maxAge;
+    }
+
+    public String getAdvertisementImageUrl() {
+        return advertisementImageUrl;
+    }
+
+    public void setAdvertisementImageUrl(String advertisementImageUrl) {
+        this.advertisementImageUrl = advertisementImageUrl;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getEductationLevel() {
+        return eductationLevel;
+    }
+
+    public void setEductationLevel(String eductationLevel) {
+        this.eductationLevel = eductationLevel;
+    }
 
     public int getId() {
         return id;
@@ -99,12 +154,12 @@ public class Opportunity {
         this.applyLink = applyLink;
     }
 
-    public ArrayList<String> getRequirements() {
-        return requirements;
+    public ArrayList<String> getOtherRequirments() {
+        return otherRequirments;
     }
 
-    public void setRequirements(ArrayList<String> requirements) {
-        this.requirements = requirements;
+    public void setOtherRequirments(ArrayList<String> otherRequirments) {
+        this.otherRequirments = otherRequirments;
     }
 
     public ArrayList<String> getAdditionalLinks() {
