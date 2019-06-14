@@ -260,9 +260,8 @@ public class Datastore {
         userEntity.setProperty("startDate", opportunity.getStartDate());
         userEntity.setProperty("recurring", opportunity.isRecurring());
 
-
-        userEntity.setProperty("opportunity", opportunity);
         datastore.put(userEntity);
+
     }
 
 
