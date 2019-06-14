@@ -26,6 +26,7 @@ import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -222,6 +223,22 @@ public class Datastore {
         if (userEntity == null) {
             return null;
         }
+        Opportunity opportunity = new Opportunity(
+                (int) userEntity.getProperty("id"),
+                (int) userEntity.getProperty("minAge"),
+                (int) userEntity.getProperty("maxAge"),
+                (String) userEntity.getProperty("title"),
+                (String) userEntity.getProperty("description"),
+                (String) userEntity.getProperty("applyLink"),
+                (String) userEntity.getProperty("advertisementImageUrl"),
+                (String) userEntity.getProperty("gender"),
+                (String) userEntity.getProperty("eductationLevel"),
+                (ArrayList<String>) userEntity.getProperty("otherRequirments"),
+                (ArrayList<String>) userEntity.getProperty("additionalLinks"),
+                (Date) userEntity.getProperty("dueDate"),
+                (Date) userEntity.getProperty("startDate"),
+                (boolean) userEntity.getProperty("recurring"));
+
         return (Opportunity) userEntity.getProperty("opportunity");
     }
 
@@ -236,7 +253,7 @@ public class Datastore {
         userEntity.setProperty("applyLink", opportunity.getApplyLink());
         userEntity.setProperty("advertisementImageUrl", opportunity.getAdvertisementImageUrl());
         userEntity.setProperty("gender", opportunity.getGender());
-        userEntity.setProperty("eductationLeveld", opportunity.getEductationLevel());
+        userEntity.setProperty("eductationLevel", opportunity.getEductationLevel());
         userEntity.setProperty("otherRequirments", opportunity.getOtherRequirments());
         userEntity.setProperty("additionalLinks", opportunity.getAdditionalLinks());
         userEntity.setProperty("dueDate", opportunity.getDueDate());

@@ -39,7 +39,10 @@ public class Opportunity {
 
 
 
-    public Opportunity(int id,int minAge,int maxAge, String title, String description, String applyLink,String advertisementImageUrl, String gender, String eductationLevel, ArrayList<String> otherRequirments, ArrayList<String> additionalLinks, String dueDate, String startDate, boolean recurring) {
+    public Opportunity(int id,int minAge,int maxAge, String title,
+                       String description, String applyLink,String advertisementImageUrl,
+                       String gender, String eductationLevel, ArrayList<String> otherRequirments,
+                       ArrayList<String> additionalLinks, String dueDate, String startDate, boolean recurring) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -60,7 +63,31 @@ public class Opportunity {
         this.recurring = recurring;
     }
 
-    public Opportunity(int id,int minAge, int maxAge, String title, String description, String applyLink,String advertisementImageUrl, String gender, String eductationLevel, ArrayList<String> otherRequirments, ArrayList<String> additionalLinks, String dueDate, String startDate) {
+    public Opportunity(int id,int minAge,int maxAge, String title,
+                       String description, String applyLink,String advertisementImageUrl,
+                       String gender, String eductationLevel, ArrayList<String> otherRequirments,
+                       ArrayList<String> additionalLinks, Date dueDate, Date startDate, boolean recurring) {
+        this.id = id;
+        this.minAge=minAge;
+        this.maxAge=maxAge;
+        this.title = title;
+        this.description = description;
+        this.applyLink = applyLink;
+        this.otherRequirments = otherRequirments;
+        this.additionalLinks = additionalLinks;
+        this.advertisementImageUrl=advertisementImageUrl;
+        this.gender = gender;
+        this.eductationLevel = eductationLevel;
+        this.startDate=startDate;
+        this.dueDate=dueDate;
+        this.recurring = recurring;
+    }
+
+
+    public Opportunity(int id,int minAge, int maxAge, String title,
+                       String description, String applyLink,String advertisementImageUrl,
+                       String gender, String eductationLevel, ArrayList<String> otherRequirments,
+                       ArrayList<String> additionalLinks, String dueDate, String startDate) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
