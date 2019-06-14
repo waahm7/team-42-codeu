@@ -227,7 +227,23 @@ public class Datastore {
 
     public void storeOpportunity(Opportunity opportunity) {
         Entity userEntity = new Entity("Opportunity", opportunity.getId());
+
         userEntity.setProperty("id", opportunity.getId());
+        userEntity.setProperty("minAge", opportunity.getMinAge());
+        userEntity.setProperty("maxAge", opportunity.getMaxAge());
+        userEntity.setProperty("title", opportunity.getTitle());
+        userEntity.setProperty("description", opportunity.getDescription());
+        userEntity.setProperty("applyLink", opportunity.getApplyLink());
+        userEntity.setProperty("advertisementImageUrl", opportunity.getAdvertisementImageUrl());
+        userEntity.setProperty("gender", opportunity.getGender());
+        userEntity.setProperty("eductationLeveld", opportunity.getEductationLevel());
+        userEntity.setProperty("otherRequirments", opportunity.getOtherRequirments());
+        userEntity.setProperty("additionalLinks", opportunity.getAdditionalLinks());
+        userEntity.setProperty("dueDate", opportunity.getDueDate());
+        userEntity.setProperty("startDate", opportunity.getStartDate());
+        userEntity.setProperty("recurring", opportunity.isRecurring());
+
+
         userEntity.setProperty("opportunity", opportunity);
         datastore.put(userEntity);
     }
