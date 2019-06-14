@@ -62,6 +62,28 @@ public class Opportunity {
         }
         this.recurring = recurring;
     }
+    public Opportunity(int id,int minAge,int maxAge, String title,
+                       String description, String applyLink,String advertisementImageUrl,
+                       String gender, String eductationLevel, String dueDate, String startDate, boolean recurring) {
+        this.id = id;
+        this.minAge=minAge;
+        this.maxAge=maxAge;
+        this.title = title;
+        this.description = description;
+        this.applyLink = applyLink;
+        this.otherRequirments = new ArrayList<>();
+        this.additionalLinks = new ArrayList<>();
+        this.advertisementImageUrl=advertisementImageUrl;
+        this.gender = gender;
+        this.eductationLevel = eductationLevel;
+        try {
+            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
+            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.recurring = recurring;
+    }
 
     public Opportunity(int id,int minAge,int maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
@@ -108,6 +130,15 @@ public class Opportunity {
         }
         this.recurring = false;
     }
+
+    public void insertOtherRequirement(String requirement){
+        otherRequirments.add(requirement);
+    }
+
+    public void insertAdditionalLink(String link){
+        additionalLinks.add(link);
+    }
+
 
     public int getMinAge() {
         return minAge;
