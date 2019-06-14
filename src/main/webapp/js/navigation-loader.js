@@ -49,7 +49,7 @@ function addLoginOrLogoutLinkToNavigation() {
            navigationElement.appendChild(
               createListItem(createLink('/index.html', 'CS Opportunities Portal for Pakistani Students   ')));
            navigationElement.appendChild(
-              createListItem(createLink('/login', 'Login')));
+              createListItem(createLink('/login.html', 'Login')));
            navigationElement.appendChild(
               createListItem(createLink('/aboutus.html', 'About Us')));
         }
