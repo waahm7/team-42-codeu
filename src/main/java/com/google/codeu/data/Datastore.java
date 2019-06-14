@@ -232,8 +232,8 @@ public class Datastore {
                 (String) userEntity.getProperty("applyLink"),
                 (String) userEntity.getProperty("advertisementImageUrl"),
                 (String) userEntity.getProperty("gender"),
-                (String) userEntity.getProperty("eductationLevel"),
-                (ArrayList<String>) userEntity.getProperty("otherRequirments"),
+                (String) userEntity.getProperty("educationLevel"),
+                (ArrayList<String>) userEntity.getProperty("otherRequirements"),
                 (ArrayList<String>) userEntity.getProperty("additionalLinks"),
                 (Date) userEntity.getProperty("dueDate"),
                 (Date) userEntity.getProperty("startDate"),
@@ -253,8 +253,8 @@ public class Datastore {
         userEntity.setProperty("applyLink", opportunity.getApplyLink());
         userEntity.setProperty("advertisementImageUrl", opportunity.getAdvertisementImageUrl());
         userEntity.setProperty("gender", opportunity.getGender());
-        userEntity.setProperty("eductationLevel", opportunity.getEductationLevel());
-        userEntity.setProperty("otherRequirments", opportunity.getOtherRequirments());
+        userEntity.setProperty("educationLevel", opportunity.getEductationLevel());
+        userEntity.setProperty("otherRequirements", opportunity.getOtherRequirments());
         userEntity.setProperty("additionalLinks", opportunity.getAdditionalLinks());
         userEntity.setProperty("dueDate", opportunity.getDueDate());
         userEntity.setProperty("startDate", opportunity.getStartDate());
