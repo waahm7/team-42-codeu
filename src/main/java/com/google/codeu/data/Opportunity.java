@@ -55,8 +55,8 @@ public class Opportunity {
         this.gender = gender;
         this.eductationLevel = eductationLevel;
         try {
-            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
+            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -80,8 +80,8 @@ public class Opportunity {
         this.gender = gender;
         this.eductationLevel = eductationLevel;
         try {
-            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
+            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -112,8 +112,8 @@ public class Opportunity {
         this.gender = gender;
         this.eductationLevel = eductationLevel;
         try {
-            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
+            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -178,8 +178,9 @@ public class Opportunity {
         this.eductationLevel = eductationLevel;
 
         try {
-            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+
+            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
+            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
