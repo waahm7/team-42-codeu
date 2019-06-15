@@ -237,9 +237,16 @@ public class Datastore {
                 (ArrayList<String>) userEntity.getProperty("additionalLinks"),
                 (Date) userEntity.getProperty("dueDate"),
                 (Date) userEntity.getProperty("startDate"),
-                (boolean) userEntity.getProperty("recurring"));
+                (boolean) userEntity.getProperty("recurring"),
+                (int) userEntity.getProperty("popularity"));
 
         return (Opportunity) userEntity.getProperty("opportunity");
+    }
+
+    public int getOpportuntiesCount(){
+            Query query = new Query("Opportunity");
+            PreparedQuery results = datastore.prepare(query);
+            return results.countEntities(FetchOptions.Builder.withLimit(1000));
     }
 
     public void storeOpportunity(Opportunity opportunity) {
@@ -259,6 +266,7 @@ public class Datastore {
         userEntity.setProperty("dueDate", opportunity.getDueDate());
         userEntity.setProperty("startDate", opportunity.getStartDate());
         userEntity.setProperty("recurring", opportunity.isRecurring());
+        userEntity.setProperty("popularity", opportunity.getPopularity());
 
         datastore.put(userEntity);
 
