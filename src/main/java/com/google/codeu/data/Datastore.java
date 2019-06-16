@@ -150,6 +150,32 @@ public class Datastore {
         }
         return users;
     }
+	
+	public List<String> getAllOpportunityTitle()
+	{
+		List<String> opportunities = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+				opportunities.add((String) entity.getProperty("title"));
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading opportunity title.");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+			
+		}	
+			
+		return opportunities;
+		
+		
+	}
+	
 
     public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>();
@@ -157,6 +183,7 @@ public class Datastore {
         Query query = new Query("Message")
                 .addSort("timestamp", SortDirection.DESCENDING);
         PreparedQuery results = datastore.prepare(query);
+		
 
         for (Entity entity : results.asIterable()) {
             try {
