@@ -1,6 +1,7 @@
 package com.google.codeu.servlets;
 
 import com.google.codeu.data.Datastore;
+import com.google.codeu.data.Opportunity;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,39 +15,59 @@ import java.io.IOException;
 @WebServlet("/getOpportunity")
 public class OpportunityGetServlet extends HttpServlet {
 
-  private Datastore datastore;
+    private Datastore datastore;
 
-  @Override
-  public void init() {
-    datastore = new Datastore();
-  }
+    @Override
+    public void init() {
+        datastore = new Datastore();
+    }
 
-  /**
-   * Responds with the "about me" section for a particular user.
-   */
-  @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
+    /**
+     * Responds with the "about me" section for a particular user.
+     */
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
 
-    response.setContentType("text/html");
+        response.setContentType("text/html");
+        int id = -1;
+        try {
+            id = Integer.parseInt(request.getParameter("id"));
+        } catch (Exception e) {
+            response.getOutputStream().println("Invalid id");
+            return;
 
-    String id = request.getParameter("id");
-    if(id==null)
-      response.getOutputStream().println("No id given");
-    else
-      response.getOutputStream().println("Opportunity id="+id);
-  }
+        }
+        if (id < 1) {
+            response.getOutputStream().println("invalid id");
+            return;
+        }
+        Opportunity opportunity=datastore.getOpportunity(id);
+        if(opportunity==null){
+            response.getOutputStream().println("invalid id");
+            return;
+        }
+        response.getOutputStream().println("here");
 
-  @Override
-  public void doPost(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
-    response.setContentType("text/html");
+        response.getOutputStream().println(opportunity.getId());
+        response.getOutputStream().println(opportunity.getMinAge());
+        response.getOutputStream().println(opportunity.getMaxAge());
+        response.getOutputStream().println(opportunity.getTitle());
+        response.getOutputStream().println(opportunity.getDescription());
 
-    String id = request.getParameter("id");
-    if(id==null)
-      response.getOutputStream().println("No id given");
-    else
-      response.getOutputStream().println("Opportunity id="+id);
 
-  }
+    }
+
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws IOException {
+        response.setContentType("text/html");
+
+        String id = request.getParameter("id");
+        if (id == null)
+            response.getOutputStream().println("No id given");
+        else
+            response.getOutputStream().println("Opportunity id=" + id);
+
+    }
 }

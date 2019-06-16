@@ -26,8 +26,8 @@ import java.util.Date;
  */
 public class Opportunity {
 
-    private int id;
-    private int minAge,maxAge;
+    private long id;
+    private long minAge,maxAge;
     private String title, description;
     private String applyLink;
     private String advertisementImageUrl;
@@ -36,10 +36,10 @@ public class Opportunity {
     private ArrayList<String> otherRequirments, additionalLinks,opportunityDetails;
     private Date dueDate, startDate;
     private boolean recurring;
-    private int popularity;
+    private long popularity;
 
 
-    public Opportunity(int id,int minAge,int maxAge, String title,
+    public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
                        ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring) {
@@ -66,10 +66,10 @@ public class Opportunity {
         popularity=0;
     }
 
-    public Opportunity(int id,int minAge,int maxAge, String title,
+    public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring,int popularity) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring,long popularity) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -93,15 +93,15 @@ public class Opportunity {
         this.popularity=popularity;
     }
 
-    public int getPopularity() {
+    public long getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(int popularity) {
+    public void setPopularity(long popularity) {
         this.popularity = popularity;
     }
 
-    public Opportunity(int id, int minAge, int maxAge, String title,
+    public Opportunity(long id, long minAge, long maxAge, String title,
                        String description, String applyLink, String advertisementImageUrl,
                        String gender, String eductationLevel, String dueDate, String startDate, boolean recurring) {
         this.id = id;
@@ -125,7 +125,7 @@ public class Opportunity {
         this.recurring = recurring;
     }
 
-    public Opportunity(int id,int minAge,int maxAge, String title,
+    public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
                        ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring) {
@@ -146,10 +146,10 @@ public class Opportunity {
         this.opportunityDetails=opportunityDetails;
 
     }
-    public Opportunity(int id,int minAge,int maxAge, String title,
+    public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring,int popularity) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring,long popularity) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -170,7 +170,7 @@ public class Opportunity {
     }
 
 
-    public Opportunity(int id,int minAge, int maxAge, String title,
+    public Opportunity(long id,long minAge, long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
                        ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate) {
@@ -219,19 +219,19 @@ public class Opportunity {
     }
 
 
-    public int getMinAge() {
+    public long getMinAge() {
         return minAge;
     }
 
-    public void setMinAge(int minAge) {
+    public void setMinAge(long minAge) {
         this.minAge = minAge;
     }
 
-    public int getMaxAge() {
+    public long getMaxAge() {
         return maxAge;
     }
 
-    public void setMaxAge(int maxAge) {
+    public void setMaxAge(long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -259,11 +259,11 @@ public class Opportunity {
         this.eductationLevel = eductationLevel;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

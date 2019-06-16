@@ -30,14 +30,15 @@ public class OpportunityInsertServlet extends HttpServlet {
             throws IOException {
         response.setContentType("text/html");
 
-        int id = datastore.getOpportuntiesCount() + 1;
-        int minAge = Integer.parseInt(request.getParameter("minAge"));
-        int maxAge = Integer.parseInt(request.getParameter("maxAge"));
-        String title = request.getParameter("title"), description = request.getParameter("id");
+        long id = datastore.getOpportunitiesCount() + 1;
+        long minAge = Integer.parseInt(request.getParameter("minAge"));
+        long maxAge = Integer.parseInt(request.getParameter("maxAge"));
+        String title = request.getParameter("title");
+        String description = request.getParameter("Description");
         String applyLink = request.getParameter("ApplyLink");
         String advertisementImageUrl = request.getParameter("Image");
-        //Requirements
-        String gender = request.getParameter("Gender"), eductationLevel = request.getParameter("Education");
+        String gender = request.getParameter("Gender");
+        String eductationLevel = request.getParameter("Education");
         String otherRequirments = request.getParameter("AdditionalRequirements");
         String additionalLinks = request.getParameter("AdditionalLinks");
         String opportunityDetails = request.getParameter("opportunityDetails");

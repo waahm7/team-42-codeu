@@ -215,7 +215,7 @@ public class Datastore {
         return messages.get(index);
     }
 
-    public Opportunity getOpportunity(int id) {
+    public Opportunity getOpportunity(long id) {
         Query query = new Query("Opportunity")
                 .setFilter(new Query.FilterPredicate("id", FilterOperator.EQUAL, id));
         PreparedQuery results = datastore.prepare(query);
@@ -223,10 +223,9 @@ public class Datastore {
         if (userEntity == null) {
             return null;
         }
-        Opportunity opportunity = new Opportunity(
-                (int) userEntity.getProperty("id"),
-                (int) userEntity.getProperty("minAge"),
-                (int) userEntity.getProperty("maxAge"),
+        Opportunity opportunity = new Opportunity(id,
+                (long) userEntity.getProperty("minAge"),
+                (long) userEntity.getProperty("maxAge"),
                 (String) userEntity.getProperty("title"),
                 (String) userEntity.getProperty("description"),
                 (String) userEntity.getProperty("applyLink"),
@@ -239,15 +238,15 @@ public class Datastore {
                 (Date) userEntity.getProperty("dueDate"),
                 (Date) userEntity.getProperty("startDate"),
                 (boolean) userEntity.getProperty("recurring"),
-                (int) userEntity.getProperty("popularity"));
+                (long) userEntity.getProperty("popularity"));
 
-        return (Opportunity) userEntity.getProperty("opportunity");
+        return opportunity;
     }
 
-    public int getOpportuntiesCount(){
-            Query query = new Query("Opportunity");
-            PreparedQuery results = datastore.prepare(query);
-            return results.countEntities(FetchOptions.Builder.withLimit(1000));
+    public int getOpportunitiesCount() {
+        Query query = new Query("Opportunity");
+        PreparedQuery results = datastore.prepare(query);
+        return results.countEntities(FetchOptions.Builder.withLimit(1000));
     }
 
     public void storeOpportunity(Opportunity opportunity) {
