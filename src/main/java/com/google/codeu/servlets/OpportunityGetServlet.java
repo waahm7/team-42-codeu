@@ -111,8 +111,16 @@ public class OpportunityGetServlet extends HttpServlet {
         //detail title
         stream.println("<div>");
         stream.println("<h3 class='opportunity-title'>");
-        stream.println("Due Date:"+opportunity.getDueDate());
+        stream.println("Due Date: <font class='blackText'>"+opportunity.getDueDateString()+"</font>");
         stream.println("</h3>");
+        stream.println("</div>");
+
+        //Apply Button
+        stream.println("<div>");
+        stream.println("<a style='text-decoration: none;' target='blank' href='"+opportunity.getApplyLink()+"'>");
+        stream.println("<button id='applyButton' onclick='"+opportunity.getApplyLink()+"'>");
+        stream.println("<span id='applyButtonText'>Apply Now</span>");
+        stream.println("</button></a>");
         stream.println("</div>");
 
 
