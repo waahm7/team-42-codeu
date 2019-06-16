@@ -3,6 +3,7 @@ package com.google.codeu.servlets;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Opportunity;
 
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,18 +43,31 @@ public class OpportunityGetServlet extends HttpServlet {
             response.getOutputStream().println("invalid id");
             return;
         }
-        Opportunity opportunity=datastore.getOpportunity(id);
-        if(opportunity==null){
+        Opportunity opportunity = datastore.getOpportunity(id);
+        if (opportunity == null) {
             response.getOutputStream().println("invalid id");
             return;
         }
-        response.getOutputStream().println("here");
 
-        response.getOutputStream().println(opportunity.getId());
-        response.getOutputStream().println(opportunity.getMinAge());
-        response.getOutputStream().println(opportunity.getMaxAge());
-        response.getOutputStream().println(opportunity.getTitle());
-        response.getOutputStream().println(opportunity.getDescription());
+        ServletOutputStream stream = response.getOutputStream();
+        stream.println("<head><body>");
+
+        //title
+        stream.println("<div>");
+        stream.println("<h2 class='opportunity-title' itemprop='headline'>");
+        stream.println(opportunity.getTitle());
+        stream.println("</h2>");
+        stream.println("</div>");
+
+
+        stream.println("</body></head>");
+
+//
+//        response.getOutputStream().println(opportunity.getId());
+//        response.getOutputStream().println(opportunity.getMinAge());
+//        response.getOutputStream().println(opportunity.getMaxAge());
+//        response.getOutputStream().println(opportunity.getTitle());
+//        response.getOutputStream().println(opportunity.getDescription());
 
 
     }
