@@ -49,26 +49,19 @@ public class OpportunityGetServlet extends HttpServlet {
             return;
         }
 
-        ServletOutputStream stream = response.getOutputStream();
-        stream.println("<head><body>");
 
+        ServletOutputStream stream = response.getOutputStream();
+        stream.println("<html><head><link rel='stylesheet' href='./css/opportunity.css'></script></head> <body>");
         //title
         stream.println("<div>");
-        stream.println("<h2 class='opportunity-title' itemprop='headline'>");
+        stream.println("<h2 class='opportunity-title'>");
         stream.println(opportunity.getTitle());
         stream.println("</h2>");
         stream.println("</div>");
 
 
-        stream.println("</body></head>");
 
-//
-//        response.getOutputStream().println(opportunity.getId());
-//        response.getOutputStream().println(opportunity.getMinAge());
-//        response.getOutputStream().println(opportunity.getMaxAge());
-//        response.getOutputStream().println(opportunity.getTitle());
-//        response.getOutputStream().println(opportunity.getDescription());
-
+        stream.println("</body></html>");
 
     }
 
