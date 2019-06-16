@@ -33,7 +33,7 @@ public class Opportunity {
     private String advertisementImageUrl;
     //Requirements
     private String gender, eductationLevel;
-    private ArrayList<String> otherRequirments, additionalLinks;
+    private ArrayList<String> otherRequirments, additionalLinks,opportunityDetails;
     private Date dueDate, startDate;
     private boolean recurring;
     private int popularity;
@@ -42,7 +42,7 @@ public class Opportunity {
     public Opportunity(int id,int minAge,int maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, String dueDate, String startDate, boolean recurring) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -54,6 +54,8 @@ public class Opportunity {
         this.advertisementImageUrl=advertisementImageUrl;
         this.gender = gender;
         this.eductationLevel = eductationLevel;
+        this.opportunityDetails=opportunityDetails;
+
         try {
             this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
             this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
@@ -67,7 +69,7 @@ public class Opportunity {
     public Opportunity(int id,int minAge,int maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, String dueDate, String startDate, boolean recurring,int popularity) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring,int popularity) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -79,6 +81,8 @@ public class Opportunity {
         this.advertisementImageUrl=advertisementImageUrl;
         this.gender = gender;
         this.eductationLevel = eductationLevel;
+        this.opportunityDetails=opportunityDetails;
+
         try {
             this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
             this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
@@ -108,6 +112,7 @@ public class Opportunity {
         this.applyLink = applyLink;
         this.otherRequirments = new ArrayList<>();
         this.additionalLinks = new ArrayList<>();
+        this.opportunityDetails = new ArrayList<>();
         this.advertisementImageUrl=advertisementImageUrl;
         this.gender = gender;
         this.eductationLevel = eductationLevel;
@@ -123,7 +128,7 @@ public class Opportunity {
     public Opportunity(int id,int minAge,int maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, Date dueDate, Date startDate, boolean recurring) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -138,11 +143,13 @@ public class Opportunity {
         this.startDate=startDate;
         this.dueDate=dueDate;
         this.recurring = recurring;
+        this.opportunityDetails=opportunityDetails;
+
     }
     public Opportunity(int id,int minAge,int maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, Date dueDate, Date startDate, boolean recurring,int popularity) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring,int popularity) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -158,13 +165,15 @@ public class Opportunity {
         this.dueDate=dueDate;
         this.recurring = recurring;
         this.popularity=popularity;
+        this.opportunityDetails=opportunityDetails;
+
     }
 
 
     public Opportunity(int id,int minAge, int maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, String dueDate, String startDate) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -176,6 +185,8 @@ public class Opportunity {
         this.gender = gender;
         this.advertisementImageUrl=advertisementImageUrl;
         this.eductationLevel = eductationLevel;
+        this.opportunityDetails=opportunityDetails;
+
 
         try {
 
@@ -194,6 +205,17 @@ public class Opportunity {
 
     public void insertAdditionalLink(String link){
         additionalLinks.add(link);
+    }
+    public void insertOpporuntityDetail(String detail){
+        opportunityDetails.add(detail);
+    }
+
+    public ArrayList<String> getOpportunityDetails() {
+        return opportunityDetails;
+    }
+
+    public void setOpportunityDetails(ArrayList<String> opportunityDetails) {
+        this.opportunityDetails = opportunityDetails;
     }
 
 

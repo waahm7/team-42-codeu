@@ -235,6 +235,7 @@ public class Datastore {
                 (String) userEntity.getProperty("educationLevel"),
                 (ArrayList<String>) userEntity.getProperty("otherRequirements"),
                 (ArrayList<String>) userEntity.getProperty("additionalLinks"),
+                (ArrayList<String>) userEntity.getProperty("opportunityDetails"),
                 (Date) userEntity.getProperty("dueDate"),
                 (Date) userEntity.getProperty("startDate"),
                 (boolean) userEntity.getProperty("recurring"),
@@ -267,6 +268,8 @@ public class Datastore {
         userEntity.setProperty("startDate", opportunity.getStartDate());
         userEntity.setProperty("recurring", opportunity.isRecurring());
         userEntity.setProperty("popularity", opportunity.getPopularity());
+        userEntity.setProperty("opportunityDetails", opportunity.getOpportunityDetails());
+
 
         datastore.put(userEntity);
 
