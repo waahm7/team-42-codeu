@@ -10,6 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import java.util.ArrayList;
+import java.util.List;
+
+
 /**
  * Handles fetching and saving user data.
  */
@@ -53,10 +57,38 @@ public class OpportunityGetServlet extends HttpServlet {
         ServletOutputStream stream = response.getOutputStream();
         stream.println("<html><head><link rel='stylesheet' href='./css/opportunity.css'></script></head> <body>");
         //title
-        stream.println("<div>");
+		
+		stream.println("<span class='slide'>");
+        stream.println("<a href='#' onclick='openSlideMenu()'");
+		stream.println("<i class='fas fa-bars'></i>");
+        stream.println("</a>");
+        stream.println("</span>");
+		stream.println("<div id='menu' class='nav'>");
+		stream.println("<a href='#' class='close' onclick='closeSlideMenu()'>");
+		stream.println("<i class='fas fa-times'></i>");
+		stream.println("</a>");
+		stream.println("<ul>");
+		
+		List<String> titles = datastore.getAllOpportunityTitle();
+		for(int i = 0; i < titles.size(); i++) {
+			stream.println("<li><a href='opportunities.html?id=" + (i+1) + "'>");
+			stream.println(titles.get(i));
+			stream.println("</a></li>");
+			
+		}
+		
+		stream.println("</ul>");
+		
+		stream.println("</div>");
+		
+        stream.println("<div id='opportunity-container'>");
         stream.println("<h2 class='opportunity-title'>");
+		stream.println(opportunity.getId());
         stream.println(opportunity.getTitle());
         stream.println("</h2>");
+		stream.println("<p>");
+		stream.println(opportunity.getDescription());
+		stream.println("</p>");
         stream.println("</div>");
 
 
