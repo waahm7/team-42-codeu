@@ -59,6 +59,85 @@ public class OpportunityGetServlet extends HttpServlet {
         stream.println("</h2>");
         stream.println("</div>");
 
+        //image
+        stream.println("<div>");
+        stream.println("<image class='OpportunityImage' src='");
+        stream.println(opportunity.getAdvertisementImageUrl());
+        stream.println("'/>");
+        stream.println("</div>");
+
+        //description
+        stream.println("<div>");
+        stream.println("<p>");
+        stream.println(opportunity.getDescription());
+        stream.println("</p>");
+        stream.println("</div>");
+
+        //detail title
+        stream.println("<div>");
+        stream.println("<h2 class='opportunity-title'>");
+        stream.println("ScholarShip Details");
+        stream.println("</h2>");
+        stream.println("</div>");
+
+        //details list
+        stream.println("<div>");
+        stream.println("<ul>");
+        for(int i=0;i<opportunity.getOpportunityDetails().size();i++){
+            stream.println("<li>");
+            stream.println(opportunity.getOpportunityDetails().get(i));
+            stream.println("</li>");
+        }
+        stream.println("</ul>");
+        stream.println("</div>");
+
+        //Eligibility Criteria
+        stream.println("<div>");
+        stream.println("<h2 class='opportunity-title'>");
+        stream.println("Eligibility Criteria");
+        stream.println("</h2>");
+        stream.println("</div>");
+
+        stream.println("<div>");
+        stream.println("<ul>");
+        for(int i=0;i<opportunity.getOtherRequirments().size();i++){
+            stream.println("<li>");
+            stream.println(opportunity.getOtherRequirments().get(i));
+            stream.println("</li>");
+        }
+        stream.println("</ul>");
+        stream.println("</div>");
+
+        //detail title
+        stream.println("<div>");
+        stream.println("<h3 class='opportunity-title'>");
+        stream.println("Due Date:"+opportunity.getDueDate());
+        stream.println("</h3>");
+        stream.println("</div>");
+
+
+
+        //Additional Links
+        stream.println("<div>");
+        stream.println("<h2 class='opportunity-title'>");
+        stream.println("Additional Links");
+        stream.println("</h2>");
+        stream.println("</div>");
+
+        stream.println("<div>");
+        stream.println("<ul>");
+        for(int i=0;i<opportunity.getAdditionalLinks().size();i++){
+            stream.println("<li><a href='");
+            stream.println(opportunity.getAdditionalLinks().get(i));
+            stream.println("'>");
+            stream.println(opportunity.getAdditionalLinks().get(i));
+            stream.println("</a></li>");
+        }
+        stream.println("</ul>");
+        stream.println("</div>");
+
+
+
 
 
         stream.println("</body></html>");

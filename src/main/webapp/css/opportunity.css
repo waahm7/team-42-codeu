@@ -2,5 +2,8 @@
 .opportunity-title{
   font-family:"Quan-SemiLight", Helvetica, sans-serif;
   text-rendering:optimizelegibility;
-  color:#8d2165 !important;
+  color:#8d2165 ;
+}
+.OpportunityImage{
+  max-height: 600px;
 }

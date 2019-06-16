@@ -19,7 +19,9 @@ package com.google.codeu.data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * A single message posted by a user.
@@ -37,7 +39,7 @@ public class Opportunity {
     private Date dueDate, startDate;
     private boolean recurring;
     private long popularity;
-
+    private String dateFormat="yyyy-dd-mm";
 
     public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
@@ -57,8 +59,9 @@ public class Opportunity {
         this.opportunityDetails=opportunityDetails;
 
         try {
-            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
-            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
+
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -84,8 +87,8 @@ public class Opportunity {
         this.opportunityDetails=opportunityDetails;
 
         try {
-            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
-            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -117,8 +120,8 @@ public class Opportunity {
         this.gender = gender;
         this.eductationLevel = eductationLevel;
         try {
-            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
-            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -190,8 +193,8 @@ public class Opportunity {
 
         try {
 
-            this.dueDate = new SimpleDateFormat("yyyy/dd/MM").parse(dueDate);
-            this.startDate = new SimpleDateFormat("yyyy/dd/MM").parse(startDate);
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -309,6 +312,16 @@ public class Opportunity {
 
     public Date getDueDate() {
         return dueDate;
+    }
+
+    public String getDueDateString() {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(dueDate);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        return day+"-"+month+"-"+year;
+
     }
 
     public void setDueDate(Date dueDate) {
