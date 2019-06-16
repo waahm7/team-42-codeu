@@ -315,6 +315,8 @@ public class Opportunity {
     }
 
     public String getDueDateString() {
+        if(dueDate==null)
+            return null;
         Calendar calendar = new GregorianCalendar();
         calendar.setTime(dueDate);
         int year = calendar.get(Calendar.YEAR);

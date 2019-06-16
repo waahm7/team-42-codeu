@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -83,11 +81,9 @@ public class OpportunityGetServlet extends HttpServlet {
 		
         stream.println("<div id='opportunity-container'>");
         stream.println("<h2 class='opportunity-title'>");
-		stream.println(opportunity.getId());
         stream.println(opportunity.getTitle());
         stream.println("</h2>");
 		stream.println("<p>");
-		stream.println(opportunity.getDescription());
 		stream.println("</p>");
         stream.println("</div>");
 
@@ -175,10 +171,6 @@ public class OpportunityGetServlet extends HttpServlet {
         }
         stream.println("</ul>");
         stream.println("</div>");
-
-
-
-
 
         stream.println("</body></html>");
 
