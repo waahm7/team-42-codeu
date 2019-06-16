@@ -38,8 +38,8 @@ public class OpportunityInsertServlet extends HttpServlet {
         String applyLink = request.getParameter("ApplyLink");
         String advertisementImageUrl = request.getParameter("Image");
         String gender = request.getParameter("Gender");
-        String eductationLevel = request.getParameter("Education");
-        String otherRequirments = request.getParameter("AdditionalRequirements");
+        String educationLevel = request.getParameter("Education");
+        String otherRequirements = request.getParameter("AdditionalRequirements");
         String additionalLinks = request.getParameter("AdditionalLinks");
         String opportunityDetails = request.getParameter("opportunityDetails");
 
@@ -50,14 +50,14 @@ public class OpportunityInsertServlet extends HttpServlet {
         if (recurring.equals("true"))
             recurringBool = true;
 
-        ArrayList<String> otherRequirementsList = new ArrayList<>(Arrays.asList(otherRequirments.split(";")));
+        ArrayList<String> otherRequirementsList = new ArrayList<>(Arrays.asList(otherRequirements.split(";")));
         ArrayList<String> additionalLinksList = new ArrayList<>(Arrays.asList(additionalLinks.split(";")));
         ArrayList<String> opportunityDetailsList = new ArrayList<>(Arrays.asList(opportunityDetails.split(";")));
 
 
         datastore.storeOpportunity(new Opportunity(id, minAge, maxAge, title,
                 description, applyLink, advertisementImageUrl,
-                gender, eductationLevel, otherRequirementsList,
+                gender, educationLevel, otherRequirementsList,
                 additionalLinksList, opportunityDetailsList, dueDate, startDate, recurringBool));
 
         response.getOutputStream().println(id);
@@ -67,8 +67,8 @@ public class OpportunityInsertServlet extends HttpServlet {
         response.getOutputStream().println(description);
         response.getOutputStream().println(applyLink);
         response.getOutputStream().println(advertisementImageUrl);
-        response.getOutputStream().println(eductationLevel);
-        response.getOutputStream().println(otherRequirments);
+        response.getOutputStream().println(educationLevel);
+        response.getOutputStream().println(otherRequirements);
         response.getOutputStream().println(gender);
         response.getOutputStream().println(additionalLinks);
         response.getOutputStream().println(opportunityDetails);
