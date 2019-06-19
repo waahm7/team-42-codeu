@@ -42,6 +42,8 @@ function addLoginOrLogoutLinkToNavigation() {
             navigationElement.appendChild(
               createListItem(createLink('/translate-page.html', 'Translate')));
             navigationElement.appendChild(
+               createListItem(createLink('/imageupload.html', 'Upload Image')));
+            navigationElement.appendChild(
               createListItem(createLink('/logout', 'Logout')));
 
         } else {
