@@ -110,7 +110,11 @@ public class FormHandlerServlet extends HttpServlet {
         }
 
         // We could check the validity of the file here, e.g. to make sure it's an image file
-        // https://stackoverflow.com/q/10779564/873165
+        String filetype = new BlobInfoFactory().loadBlobInfo(blobKey).getContentType().toLowerCase();
+        if (!(filetype.equals("image/jpg")|| filetype.equals("image/jpeg") || filetype.equals("image/png") || filetype.equals("image/gif"))){
+            blobstoreService.delete(blobKey);
+            return null;
+        }
 
         // Use ImagesService to get a URL that points to the uploaded file.
         ImagesService imagesService = ImagesServiceFactory.getImagesService();
