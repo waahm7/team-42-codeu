@@ -19,30 +19,32 @@ package com.google.codeu.data;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 /**
  * A single message posted by a user.
  */
 public class Opportunity {
 
-    private int id;
-    private int minAge,maxAge;
+    private long id;
+    private long minAge,maxAge;
     private String title, description;
     private String applyLink;
     private String advertisementImageUrl;
     //Requirements
     private String gender, eductationLevel;
-    private ArrayList<String> otherRequirments, additionalLinks;
+    private ArrayList<String> otherRequirments, additionalLinks,opportunityDetails;
     private Date dueDate, startDate;
     private boolean recurring;
+    private long popularity;
+    private String dateFormat="yyyy-dd-mm";
 
-
-
-    public Opportunity(int id,int minAge,int maxAge, String title,
+    public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, String dueDate, String startDate, boolean recurring) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -54,16 +56,56 @@ public class Opportunity {
         this.advertisementImageUrl=advertisementImageUrl;
         this.gender = gender;
         this.eductationLevel = eductationLevel;
+        this.opportunityDetails=opportunityDetails;
+
         try {
-            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         this.recurring = recurring;
+        popularity=0;
     }
-    public Opportunity(int id,int minAge,int maxAge, String title,
+
+    public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
+                       String gender, String eductationLevel, ArrayList<String> otherRequirments,
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring,long popularity) {
+        this.id = id;
+        this.minAge=minAge;
+        this.maxAge=maxAge;
+        this.title = title;
+        this.description = description;
+        this.applyLink = applyLink;
+        this.otherRequirments = otherRequirments;
+        this.additionalLinks = additionalLinks;
+        this.advertisementImageUrl=advertisementImageUrl;
+        this.gender = gender;
+        this.eductationLevel = eductationLevel;
+        this.opportunityDetails=opportunityDetails;
+
+        try {
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        this.recurring = recurring;
+        this.popularity=popularity;
+    }
+
+    public long getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(long popularity) {
+        this.popularity = popularity;
+    }
+
+    public Opportunity(long id, long minAge, long maxAge, String title,
+                       String description, String applyLink, String advertisementImageUrl,
                        String gender, String eductationLevel, String dueDate, String startDate, boolean recurring) {
         this.id = id;
         this.minAge=minAge;
@@ -73,22 +115,23 @@ public class Opportunity {
         this.applyLink = applyLink;
         this.otherRequirments = new ArrayList<>();
         this.additionalLinks = new ArrayList<>();
+        this.opportunityDetails = new ArrayList<>();
         this.advertisementImageUrl=advertisementImageUrl;
         this.gender = gender;
         this.eductationLevel = eductationLevel;
         try {
-            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         this.recurring = recurring;
     }
 
-    public Opportunity(int id,int minAge,int maxAge, String title,
+    public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, Date dueDate, Date startDate, boolean recurring) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -103,13 +146,37 @@ public class Opportunity {
         this.startDate=startDate;
         this.dueDate=dueDate;
         this.recurring = recurring;
+        this.opportunityDetails=opportunityDetails;
+
+    }
+    public Opportunity(long id,long minAge,long maxAge, String title,
+                       String description, String applyLink,String advertisementImageUrl,
+                       String gender, String eductationLevel, ArrayList<String> otherRequirments,
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring,long popularity) {
+        this.id = id;
+        this.minAge=minAge;
+        this.maxAge=maxAge;
+        this.title = title;
+        this.description = description;
+        this.applyLink = applyLink;
+        this.otherRequirments = otherRequirments;
+        this.additionalLinks = additionalLinks;
+        this.advertisementImageUrl=advertisementImageUrl;
+        this.gender = gender;
+        this.eductationLevel = eductationLevel;
+        this.startDate=startDate;
+        this.dueDate=dueDate;
+        this.recurring = recurring;
+        this.popularity=popularity;
+        this.opportunityDetails=opportunityDetails;
+
     }
 
 
-    public Opportunity(int id,int minAge, int maxAge, String title,
+    public Opportunity(long id,long minAge, long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks, String dueDate, String startDate) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -121,15 +188,19 @@ public class Opportunity {
         this.gender = gender;
         this.advertisementImageUrl=advertisementImageUrl;
         this.eductationLevel = eductationLevel;
+        this.opportunityDetails=opportunityDetails;
+
 
         try {
-            this.dueDate = new SimpleDateFormat("dd/MM/yyyy").parse(dueDate);
-            this.startDate = new SimpleDateFormat("dd/MM/yyyy").parse(startDate);
+
+            this.dueDate = new SimpleDateFormat(dateFormat).parse(dueDate);
+            this.startDate = new SimpleDateFormat(dateFormat).parse(startDate);
         } catch (ParseException e) {
             e.printStackTrace();
         }
         this.recurring = false;
     }
+
 
     public void insertOtherRequirement(String requirement){
         otherRequirments.add(requirement);
@@ -138,21 +209,32 @@ public class Opportunity {
     public void insertAdditionalLink(String link){
         additionalLinks.add(link);
     }
+    public void insertOpporuntityDetail(String detail){
+        opportunityDetails.add(detail);
+    }
+
+    public ArrayList<String> getOpportunityDetails() {
+        return opportunityDetails;
+    }
+
+    public void setOpportunityDetails(ArrayList<String> opportunityDetails) {
+        this.opportunityDetails = opportunityDetails;
+    }
 
 
-    public int getMinAge() {
+    public long getMinAge() {
         return minAge;
     }
 
-    public void setMinAge(int minAge) {
+    public void setMinAge(long minAge) {
         this.minAge = minAge;
     }
 
-    public int getMaxAge() {
+    public long getMaxAge() {
         return maxAge;
     }
 
-    public void setMaxAge(int maxAge) {
+    public void setMaxAge(long maxAge) {
         this.maxAge = maxAge;
     }
 
@@ -180,11 +262,11 @@ public class Opportunity {
         this.eductationLevel = eductationLevel;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -230,6 +312,18 @@ public class Opportunity {
 
     public Date getDueDate() {
         return dueDate;
+    }
+
+    public String getDueDateString() {
+        if(dueDate==null)
+            return null;
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(dueDate);
+        int year = calendar.get(Calendar.YEAR);
+        int month = calendar.get(Calendar.MONTH) + 1;
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        return day+"-"+month+"-"+year;
+
     }
 
     public void setDueDate(Date dueDate) {
