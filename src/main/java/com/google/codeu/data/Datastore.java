@@ -168,14 +168,29 @@ public class Datastore {
                 System.err.println(entity.toString());
                 e.printStackTrace();
             }
-			
 		}	
-			
 		return opportunities;
-		
-		
 	}
-	
+    
+    public List<Long> getAllOpportunityIds(){
+		List<Long> oppurtunitiesIds = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+				oppurtunitiesIds.add((long) entity.getProperty("id"));
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading opportunity id.");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+		}				
+		return oppurtunitiesIds;
+	}
 
     public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>();
@@ -268,6 +283,16 @@ public class Datastore {
                 (long) userEntity.getProperty("popularity"));
 
         return opportunity;
+    }
+
+    public List<Opportunity> getAllOpportunities() {
+        List<Opportunity> opportunities = new ArrayList<>();
+        List<Long> ids = getAllOpportunityIds();
+        for (Long id : ids) {
+            Opportunity temp = getOpportunity(id);
+            opportunities.add(temp);
+        }
+        return opportunities;
     }
 
     public int getOpportunitiesCount() {
