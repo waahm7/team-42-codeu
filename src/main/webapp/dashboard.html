@@ -9,7 +9,7 @@
 <body>
     <div id="myData"></div>
     <script>
-        fetch('/getAllOppurtunities')
+        fetch('/getAllOpportunities')
             .then(function (response) {
                 return response.json(); 
             })
@@ -21,12 +21,55 @@
             });
         function appendData(data) {
             var mainContainer = document.getElementById("myData");
-            for (var i = 0; i < data.length; i++) {
-                var div = document.createElement("div");
-                div.innerHTML = 'Name: ' + data[i].id + ' ' + data[i].id;
-                mainContainer.appendChild(div);
-            
-            }
+            data.forEach(object => {
+                const opportunityDiv = buildOpportunityDiv(object);
+                mainContainer.appendChild(opportunityDiv);
+            });
+        }
+    function buildOpportunityDiv(element){
+        const opportunityTitle = document.createElement('div');
+        opportunityTitle.classList.add("left-align");
+        opportunityTitle.appendChild(document.createTextNode(element.title));
+
+        const dueDateDiv = document.createElement('div');
+        dueDateDiv.classList.add('right-align');
+        dueDateDiv.appendChild(document.createTextNode(element.dueDate));
+
+        const headerDiv = document.createElement('div');
+        headerDiv.classList.add('opportunity-header');
+        headerDiv.appendChild(opportunityTitle);
+        headerDiv.appendChild(dueDateDiv);
+
+        const genderDiv = document.createElement('div');
+        genderDiv.innerHTML = element.gender
+        const minAgeDiv = document.createElement('div');
+        minAgeDiv.innerHTML = element.minAge
+        const maxAgeDiv = document.createElement('div');
+        maxAgeDiv.innerHTML = element.maxAge
+        const educationDiv = document.createElement('div');
+        educationDiv.innerHTML = element.eductationLevel
+        
+        
+        const elegibilityDiv = document.createElement('div');
+        elegibilityDiv.classList.add('opportunity-eligibility');
+        elegibilityDiv.appendChild(genderDiv);
+        elegibilityDiv.appendChild(educationDiv);
+        elegibilityDiv.appendChild(minAgeDiv);
+        elegibilityDiv.appendChild(maxAgeDiv);
+
+
+        const bodyDiv = document.createElement('div');
+        bodyDiv.classList.add('opportunity-body');
+        // bodyDiv.appendChild(document.createTextNode(message.text));
+        bodyDiv.innerHTML = element.description;
+
+        const opportunityDiv = document.createElement('div');
+        opportunityDiv.classList.add("opportunity-div");
+        opportunityDiv.appendChild(headerDiv);
+        opportunityDiv.appendChild(elegibilityDiv)
+        opportunityDiv.appendChild(bodyDiv);
+
+        return opportunityDiv;
         }
     </script>
 </body>

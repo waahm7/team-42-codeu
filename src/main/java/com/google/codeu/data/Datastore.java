@@ -173,14 +173,14 @@ public class Datastore {
 	}
     
     public List<Long> getAllOpportunityIds(){
-		List<Long> oppurtunitiesIds = new ArrayList<>();
+		List<Long> opportunitiesIds = new ArrayList<>();
 		Query query = new Query("Opportunity");
                 
         PreparedQuery results = datastore.prepare(query);
 		
 		for (Entity entity : results.asIterable()) {
 			try{
-				oppurtunitiesIds.add((long) entity.getProperty("id"));
+				opportunitiesIds.add((long) entity.getProperty("id"));
 			}
 			
 			catch (Exception e) {
@@ -189,7 +189,7 @@ public class Datastore {
                 e.printStackTrace();
             }
 		}				
-		return oppurtunitiesIds;
+		return opportunitiesIds;
 	}
 
     public List<Message> getAllMessages() {
