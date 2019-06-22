@@ -54,7 +54,6 @@ public class OpportunityInsertServlet extends HttpServlet {
         ArrayList<String> additionalLinksList = new ArrayList<>(Arrays.asList(additionalLinks.split(";")));
         ArrayList<String> opportunityDetailsList = new ArrayList<>(Arrays.asList(opportunityDetails.split(";")));
 
-
         datastore.storeOpportunity(new Opportunity(id, minAge, maxAge, title,
                 description, applyLink, advertisementImageUrl,
                 gender, educationLevel, otherRequirementsList,
@@ -75,6 +74,7 @@ public class OpportunityInsertServlet extends HttpServlet {
         response.getOutputStream().println(dueDate);
         response.getOutputStream().println(startDate);
         response.getOutputStream().println(recurring);
+
         response.getOutputStream().println("Data inserted successfully");
 
 
