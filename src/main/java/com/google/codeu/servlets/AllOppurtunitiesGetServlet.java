@@ -35,13 +35,15 @@ public class AllOppurtunitiesGetServlet extends HttpServlet {
     response.setContentType("application/json");
     Gson gson = new Gson();
     String res = "["; 
-
-
-
     List <com.google.codeu.data.Opportunity> allOpp = datastore.getAllOpportunities();
     for (com.google.codeu.data.Opportunity tempOpportunity : allOpp) {
       String jsonInString = gson.toJson(tempOpportunity);
       res = res + jsonInString + ",";
+    }
+    if (res.equals("[]")) {
+      // Request is invalid, return empty array
+      response.getWriter().println("{}");
+      return;
     }
     res = res.substring(0, res.length()-1);
     res = res + "]";
