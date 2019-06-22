@@ -19,7 +19,7 @@ import java.util.List;
  * Handles fetching site statistics.
  */
 @WebServlet("/getAllOppurtunities")
-public class GetAllOppurtunitiesServlet extends HttpServlet {
+public class AllOppurtunitiesGetServlet extends HttpServlet {
 
   private Datastore datastore;
 
