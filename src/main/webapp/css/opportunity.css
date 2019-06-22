@@ -1,0 +1,38 @@
+.opportunity-title{
+  font-family:"Quan-SemiLight", Helvetica, sans-serif;
+  text-rendering:optimizelegibility;
+  color:#8d2165 ;
+}
+
+.OpportunityImage{
+  max-height: 600px;
+}
+
+.blackText{
+    color:black;
+    size:10px;
+}
+
+#applyButton{
+    display: block;
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .75em;
+    letter-spacing: 1px;
+    height: 38px;
+    width: 120px;
+    line-height: 38px;
+    overflow: hidden;
+    background: #4dbecf;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+#applyButtonText{
+    display: block;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+}

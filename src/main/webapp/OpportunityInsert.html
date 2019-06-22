@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<form id="insertion" method="post" action="OpportunityGetServlet" role="form">
+<form id="insertion" method="post" action="insertOpportunity" role="form">
 
     <div class="messages"></div>
 
@@ -108,9 +108,8 @@
                     <label for="form_Recurring">Recurring</label>
                     <select id="form_Recurring" name="Recurring" class="form-control" required="required" data-error="Please select if it is Recurring or not">
                         <option value=""></option>
-                        <option value="Recurring">Yes, Recurring</option>
-                        <option value="NotRecurring">No, Not Recurring</option>
-                        <option value="Unknown">Unknown</option>
+                        <option value="true">Yes, Recurring</option>
+                        <option value="false">No, Not Recurring</option>
                     </select>
                     <div class="help-block with-errors"></div>
                 </div>
@@ -133,6 +132,14 @@
                     <div class="help-block with-errors"></div>
                 </div>
             </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="form_OpportunityDetails">Details</label>
+                    <input id="form_OpportunityDetails" type="text" name="opportunityDetails" class="form-control" placeholder="Please enter Opportunity Details " required="required" data-error="Opportunity details is required.">
+                    <div class="help-block with-errors"></div>
+                </div>
+            </div>
+
         </div>
 
         <div class="row">
