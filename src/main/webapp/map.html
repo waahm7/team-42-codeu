@@ -5,14 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src='/js/config.js'></script>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
-    
-    <!-- <script id="api" src=""></script> -->
+
     <script>
         const mapAPI = config.api
         var script = document.createElement( 'script' );
@@ -45,10 +38,11 @@
                     const marker =  new google.maps.Marker({
                         position: {lat: data.lat, lng: data.lng},
                         map: map,
+                        animation:google.maps.Animation.BOUNCE,
                         title: "TITLE"
                     });  
                     const infoWindow = new google.maps.InfoWindow({
-                        content: "<a href=opportunities.html?id=" + id + ">" + DESCRIPTION + "</a>"
+                        content: "<a href=opportunities.html?id=" + id + ">" + "DESCRIPTION </a>"
                     });
                     marker.addListener('click', function() {
                         infoWindow.open(map, marker);
