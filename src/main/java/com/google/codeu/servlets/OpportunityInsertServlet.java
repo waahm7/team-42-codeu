@@ -43,8 +43,6 @@ public class OpportunityInsertServlet extends HttpServlet {
         String additionalLinks = request.getParameter("AdditionalLinks");
         String opportunityDetails = request.getParameter("opportunityDetails");
         String city = request.getParameter("City");
-        String state = request.getParameter("State");
-
 
 
 
@@ -61,7 +59,7 @@ public class OpportunityInsertServlet extends HttpServlet {
         datastore.storeOpportunity(new Opportunity(id, minAge, maxAge, title,
                 description, applyLink, advertisementImageUrl,
                 gender, educationLevel, otherRequirementsList,
-                additionalLinksList, opportunityDetailsList, dueDate, startDate, recurringBool, city, state));
+                additionalLinksList, opportunityDetailsList, dueDate, startDate, recurringBool, city));
 
         response.getOutputStream().println(id);
         response.getOutputStream().println(minAge);
@@ -79,7 +77,6 @@ public class OpportunityInsertServlet extends HttpServlet {
         response.getOutputStream().println(startDate);
         response.getOutputStream().println(recurring);
         response.getOutputStream().println(city);
-        response.getOutputStream().println(state);
 
 
         response.getOutputStream().println("Data inserted successfully");

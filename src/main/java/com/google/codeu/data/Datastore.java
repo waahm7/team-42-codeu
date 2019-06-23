@@ -295,6 +295,8 @@ public class Datastore {
         userEntity.setProperty("recurring", opportunity.isRecurring());
         userEntity.setProperty("popularity", opportunity.getPopularity());
         userEntity.setProperty("opportunityDetails", opportunity.getOpportunityDetails());
+        userEntity.setProperty("city", opportunity.getCity());
+
 
 
         datastore.put(userEntity);
