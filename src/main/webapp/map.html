@@ -22,7 +22,7 @@
             var cities = ["Lahore", "Karachi", "New York", "Perth", "London", "Berlin", "Mali"] //fetch from backend along with tile and description
 
             cities.forEach((city)=>{
-                fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+city+'&key=API-KEY')
+                fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+city+'&key=ADD-API-KEY')
                 .then(respose=>{
                     return respose.json()
                 })
