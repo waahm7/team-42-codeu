@@ -26,7 +26,6 @@
             var cities = ["Lahore", "Karachi", "New York", "Perth", "London", "Berlin", "Mali"] //fetch from backend along with tile and description
             var id = 0
             cities.forEach((city)=>{
-                id = id + 1 //will get this from bacj-end as well
                 fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+city+'&key='+mapAPI)
                 .then(respose=>{
                     return respose.json()
@@ -41,11 +40,15 @@
                         animation:google.maps.Animation.BOUNCE,
                         title: "TITLE"
                     });  
+                    id = id + 1 //will get this from bacj-end as well
                     const infoWindow = new google.maps.InfoWindow({
                         content: "<a href=opportunities.html?id=" + id + ">" + "DESCRIPTION </a>"
                     });
                     marker.addListener('click', function() {
                         infoWindow.open(map, marker);
+                        map.setZoom(5);
+                        map.setCenter(marker.getPosition());
+                        window.setTimeout(function() {map.setZoom(3);},5000);
                     });
                 });
             });
