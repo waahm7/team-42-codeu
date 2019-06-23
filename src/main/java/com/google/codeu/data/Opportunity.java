@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Map;
 
 /**
  * A single message posted by a user.
@@ -40,6 +41,7 @@ public class Opportunity {
     private boolean recurring;
     private long popularity;
     private String dateFormat="yyyy-dd-mm";
+    private String city, state;
 
     public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
@@ -126,12 +128,13 @@ public class Opportunity {
             e.printStackTrace();
         }
         this.recurring = recurring;
+        
     }
 
     public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, Date dueDate, Date startDate, boolean recurring, String city, String state) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -147,6 +150,8 @@ public class Opportunity {
         this.dueDate=dueDate;
         this.recurring = recurring;
         this.opportunityDetails=opportunityDetails;
+        this.city = city;
+        this.state = state;
 
     }
     public Opportunity(long id,long minAge,long maxAge, String title,
@@ -237,6 +242,23 @@ public class Opportunity {
     public void setMaxAge(long maxAge) {
         this.maxAge = maxAge;
     }
+
+    public void setCity(String city){
+        this.city = city;
+    }
+    
+    public String getCity(){
+        return city;
+    }
+    
+    public void setState(String state){
+        this.state = state;
+    }
+    
+    public String getState(){
+        return state;
+    }
+
 
     public String getAdvertisementImageUrl() {
         return advertisementImageUrl;
