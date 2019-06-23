@@ -1,76 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JSON Test</title>
+    <title>Dashboard Feed</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <script src="/js/navigation-loader.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script src="/js/dashboard.js"> </script>
 </head>
-<body>
-    <div id="myData"></div>
-    <script>
-        fetch('/getAllOpportunities')
-            .then(function (response) {
-                return response.json(); 
-            })
-            .then(function (data) {
-                appendData(data);
-            })
-            .catch(function (err) {
-                console.log('error: ' + err);
-            });
-        function appendData(data) {
-            var mainContainer = document.getElementById("myData");
-            data.forEach(object => {
-                const opportunityDiv = buildOpportunityDiv(object);
-                mainContainer.appendChild(opportunityDiv);
-            });
-        }
-    function buildOpportunityDiv(element){
-        const opportunityTitle = document.createElement('div');
-        opportunityTitle.classList.add("left-align");
-        opportunityTitle.appendChild(document.createTextNode(element.title));
-
-        const dueDateDiv = document.createElement('div');
-        dueDateDiv.classList.add('right-align');
-        dueDateDiv.appendChild(document.createTextNode(element.dueDate));
-
-        const headerDiv = document.createElement('div');
-        headerDiv.classList.add('opportunity-header');
-        headerDiv.appendChild(opportunityTitle);
-        headerDiv.appendChild(dueDateDiv);
-
-        const genderDiv = document.createElement('div');
-        genderDiv.innerHTML = element.gender
-        const minAgeDiv = document.createElement('div');
-        minAgeDiv.innerHTML = element.minAge
-        const maxAgeDiv = document.createElement('div');
-        maxAgeDiv.innerHTML = element.maxAge
-        const educationDiv = document.createElement('div');
-        educationDiv.innerHTML = element.eductationLevel
-        
-        
-        const elegibilityDiv = document.createElement('div');
-        elegibilityDiv.classList.add('opportunity-eligibility');
-        elegibilityDiv.appendChild(genderDiv);
-        elegibilityDiv.appendChild(educationDiv);
-        elegibilityDiv.appendChild(minAgeDiv);
-        elegibilityDiv.appendChild(maxAgeDiv);
-
-
-        const bodyDiv = document.createElement('div');
-        bodyDiv.classList.add('opportunity-body');
-        // bodyDiv.appendChild(document.createTextNode(message.text));
-        bodyDiv.innerHTML = element.description;
-
-        const opportunityDiv = document.createElement('div');
-        opportunityDiv.classList.add("opportunity-div");
-        opportunityDiv.appendChild(headerDiv);
-        opportunityDiv.appendChild(elegibilityDiv)
-        opportunityDiv.appendChild(bodyDiv);
-
-        return opportunityDiv;
-        }
-    </script>
+<body onload="addNaviMenues(); buildUI();">
+    <nav>
+        <ul class = "topnav" id="navigation">
+        </ul>
+    </nav>
+<div id="content">
+    <h1>Oppurtunity Dashboard</h1>
+    <hr/>
+    <div id="main-container">Loading...</div>
+</div>
 </body>
 </html>
