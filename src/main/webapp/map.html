@@ -13,38 +13,34 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
     
     <script>  
-
-        
-        function createOpportunityMap(){
-
-            fetch('https://maps.googleapis.com/maps/api/geocode/json?address=Lahore&key=YOUR_API_KEY')
-            .then(data =>{
-                console.log(data);
-            
-            })
-            //test data, in actuall it needs to be fetched from back-end servlet
-            var opportunityLocations = [
-                {lat: 40.730610, lng:  -73.935242, id: 1}, //NYC
-                {lat: 31.582045, lng:  74.329376, id:2}, //Lahore
-                {lat: 1.290270, lng: 103.851959, id: 2} //Singapur
-            ]
-
+        function getCoordinates(){
             const map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 0, lng: 0},
-            zoom:3
+                center: {lat: 0, lng: 0},
+                zoom:3
             });
 
-            opportunityLocations.forEach((data) => {            
-                const marker =  new google.maps.Marker({
-                    position: {lat: data.lat, lng: data.lng},
-                    map: map,
-                    title: data.id.toString()
-                });  
-                const infoWindow = new google.maps.InfoWindow({
-                    content: data.id.toString()
-                });
-                marker.addListener('click', function() {
-                    infoWindow.open(map, marker);
+            var cities = ["Lahore", "Karachi", "New York", "Perth", "London", "Berlin", "Mali"] //fetch from backend along with tile and description
+
+            cities.forEach((city)=>{
+                fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+city+'&key=AIzaSyDPtFpGDAcqHrGU3W_vkIesB0K1AHWg8ck')
+                .then(respose=>{
+                    return respose.json()
+                })
+                .then(function(jsonObject){
+                    return (jsonObject.results[0].geometry.location) //parse json object to get coordinates
+                })
+                .then((data)=>{
+                    const marker =  new google.maps.Marker({
+                        position: {lat: data.lat, lng: data.lng},
+                        map: map,
+                        title: "TITLE"
+                    });  
+                    const infoWindow = new google.maps.InfoWindow({
+                        content: "DESCRIPTION"
+                    });
+                    marker.addListener('click', function() {
+                        infoWindow.open(map, marker);
+                    });
                 });
             });
         };
@@ -63,7 +59,7 @@
 
 </head>
 
-<body onload="createOpportunityMap();">
+<body onload="getCoordinates();">
  <h1>Opportunities Map</h1>
  <div id="map" ></div>
 </body>
