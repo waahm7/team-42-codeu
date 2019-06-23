@@ -13,7 +13,14 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
     
     <script>  
+
+        
         function createOpportunityMap(){
+
+            fetch('https://maps.googleapis.com/maps/api/geocode/json?address=Lahore&key=YOUR_API_KEY')
+            .then(data =>{
+                console.log(data);
+            })
             //test data, in actuall it needs to be fetched from back-end servlet
             var opportunityLocations = [
                 {lat: 40.730610, lng:  -73.935242, id: 1}, //NYC
