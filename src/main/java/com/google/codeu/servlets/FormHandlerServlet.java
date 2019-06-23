@@ -59,9 +59,8 @@ public class FormHandlerServlet extends HttpServlet {
 
         if(imageUrl!= null) {
             userText += "<img src=\"" + imageUrl + "\" />";
-            message = new Message(user, userText);
         }
-        else {
+
             String text=userText;
             String regex = "(https?://\\S+\\.(jpeg|gif|png|jpg))";
             String replacement = "<img src=\"$1\" />";
@@ -78,7 +77,6 @@ public class FormHandlerServlet extends HttpServlet {
                 message = new Message(user, text);
             }
 
-        }
 
         datastore.storeMessage(message);
 
