@@ -79,7 +79,7 @@ public class OpportunityInsertServlet extends HttpServlet {
         response.getOutputStream().println(startDate);
         response.getOutputStream().println(recurring);
         response.getOutputStream().println(city);
-        response.getOutputStream().println(country;
+        response.getOutputStream().println(country);
 
 
 
