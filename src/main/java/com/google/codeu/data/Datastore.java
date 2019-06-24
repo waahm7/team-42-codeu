@@ -296,6 +296,8 @@ public class Datastore {
         opportunityEntity.setProperty("popularity", opportunity.getPopularity());
         opportunityEntity.setProperty("opportunityDetails", opportunity.getOpportunityDetails());
         opportunityEntity.setProperty("city", opportunity.getCity());
+        opportunityEntity.setProperty("country", opportunity.getCountry());
+
 
 
         datastore.put(opportunityEntity);
