@@ -24,6 +24,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.repackaged.com.google.common.base.Pair;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -172,10 +173,37 @@ public class Datastore {
 		}	
 			
 		return opportunities;
-		
-		
+			
 	}
-	
+    
+    public List<String> getAllOpportunityLocations()
+	{
+		List<String> opportunities = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+                String city = (String) entity.getProperty("city");
+                String country = (String) entity.getProperty("country");
+                // long id = (long) entity.getProperty("id");
+				opportunities.add(city+",+"+country);
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading opportunity title.");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+			
+		}	
+			
+		return opportunities;
+			
+	}
+
+
 
     public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>();
@@ -296,6 +324,8 @@ public class Datastore {
         opportunityEntity.setProperty("popularity", opportunity.getPopularity());
         opportunityEntity.setProperty("opportunityDetails", opportunity.getOpportunityDetails());
         opportunityEntity.setProperty("city", opportunity.getCity());
+        opportunityEntity.setProperty("country", opportunity.getCountry());
+
 
 
         datastore.put(opportunityEntity);
