@@ -43,7 +43,7 @@
                         const marker =  new google.maps.Marker({
                             position: {lat: data.lat, lng: data.lng},
                             map: map,
-                            animation:google.maps.Animation.BOUNCE,
+                            animation:google.maps.Animation.DROP,
                             title: opportunitiesTitles[opportunityID]
                         });  
                         opportunityID = opportunityID + 1 //id are starting from 1
@@ -55,13 +55,13 @@
                             infoWindow.open(map, marker);
                             map.setZoom(5);
                             map.setCenter(marker.getPosition());
-                            window.setTimeout(function() {map.setZoom(3);},5000);
+                            window.setTimeout(function() {map.setZoom(3); infoWindow.close(map, marker);},5000);
                         });
                         function toggleBounce() {
                             if (marker.getAnimation() !== null) {
                             marker.setAnimation(null);
                             } else {
-                            marker.setAnimation(google.maps.Animation.DROP);
+                            marker.setAnimation(google.maps.Animation.BOUNCE);
                             }
                         }
                     });
