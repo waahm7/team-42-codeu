@@ -28,20 +28,20 @@
             .then(data=>{
                 return data.json()
             })
-            .then(data=>{
-                var opportunitiesLocations = data[0]; //address which includes city + country
-                var opportunitiesTitles = data[1];
+            .then(response=>{
+                var opportunitiesLocations = response[0]; //address which includes city + country
+                var opportunitiesTitles = response[1];
                 opportunitiesLocations.forEach((location)=>{
                     fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key='+mapAPI)
-                    .then(respose=>{
-                        return respose.json()
+                    .then(json=>{
+                        return json.json()
                     })
                     .then(function(jsonObject){
                         return (jsonObject.results[0].geometry.location) //parse json object to get coordinates
                     })
-                    .then((data)=>{
+                    .then((mark)=>{
                         const marker =  new google.maps.Marker({
-                            position: {lat: data.lat, lng: data.lng},
+                            position: {lat: mark.lat, lng: mark.lng},
                             map: map,
                             animation:google.maps.Animation.DROP,
                             title: opportunitiesTitles[opportunityID]
