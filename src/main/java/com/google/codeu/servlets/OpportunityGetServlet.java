@@ -176,16 +176,4 @@ public class OpportunityGetServlet extends HttpServlet {
 
     }
 
-    @Override
-    public void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws IOException {
-        response.setContentType("text/html");
-
-        String id = request.getParameter("id");
-        if (id == null)
-            response.getOutputStream().println("No id given");
-        else
-            response.getOutputStream().println("Opportunity id=" + id);
-
-    }
 }
