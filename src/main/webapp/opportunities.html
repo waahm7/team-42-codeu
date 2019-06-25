@@ -1,22 +1,46 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>CS OPPORTUNITIES</title>
   <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
   <script src = "/js/opportunity.js"></script>
   <link rel="stylesheet" href="/css/opportunities.css">
-<script>
-  function openSlideMenu(){
-    document.getElementById('menu').style.width = '250px';
-    document.getElementById('content').style.marginLeft = '250px';
+  <script>
+    function openSlideMenu(){
+      document.getElementById('menu').style.width = '250px';
+      document.getElementById('content').style.marginLeft = '250px';
+    }
+    function closeSlideMenu(){
+      document.getElementById('menu').style.width = '0';
+      document.getElementById('content').style.marginLeft = '0';
+    }
+  </script>
+  <script>
+    function displayTitles(){
+      fetch('/map')
+      .then(data=>{
+        return data.json()
+      })
+      .then(data=>{	
+        var id = 0
+        var opportunitiesTitles = data[1];
+        console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
+        opportunitiesTitles.forEach(element => {
+          var menu = document.getElementById("menu")
+          var title = document.createElement('div')
+          id++
+          title.innerHTML = "<li> <a href='opportunities.html?id=" + id + "' > " + element + "<li>"
+          menu.appendChild(title);
+          
+      });
+    })
   }
-  function closeSlideMenu(){
-    document.getElementById('menu').style.width = '0';
-    document.getElementById('content').style.marginLeft = '0';
-  }
-</script>
+
+  </script>
 </head>
-<body onload = "fetchOpportunities()">
+
+<body onload="displayTitles()">
 
   <div id="content">
 
@@ -30,28 +54,10 @@
       <a href="#" class="close" onclick="closeSlideMenu()">
         <i class="fas fa-times"></i>
       </a>
-      <ul>
-        <li><a href="opportunities.html?id=1">1</a></li>
-        <li><a href="opportunities.html?id=2">2</a></li>
-        <li><a href="opportunities.html?id=3">3</a></li>
-        <li><a href="opportunities.html?id=4">4</a></li>
-        <li><a href="opportunities.html?id=5">5</a></li>
-      </ul>
     </div>
-		<div id="opportunity-container">
-		<h1>CS OPPORTUNITIES</h1>
-		<p></p>
-		
-		</div>
-  </div>
-
-	
-
-
-
-
-
-
+  
+  
+  </div>	
 
 </body>
 </html>

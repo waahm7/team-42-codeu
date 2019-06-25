@@ -13,14 +13,7 @@ function fetchOpportunities(){
   fetch(url).then((response) => {
     return response.text();
   }).then((opportunity) => {
-    const opportunityContainer = document.getElementById('content');
-	var ps = opportunityContainer.getElementsByTagName('p'); //ps contains all of the p elements inside your div
-	var p = ps[0]; //take the first element
-    if(opportunity == ''){
-      opportunity = 'This opportunity does not exist.';
-    }
-    
-    opportunityContainer.innerHTML = opportunity;
-
+    console.log(opportunity)
+    //front end build here
   });
 }
