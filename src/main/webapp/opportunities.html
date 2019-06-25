@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>CS OPPORTUNITIES</title>
   <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
   <script src = "/js/opportunity.js"></script>
   <link rel="stylesheet" href="/css/opportunities.css">
-<script>
-  function openSlideMenu(){
-    document.getElementById('menu').style.width = '250px';
-    document.getElementById('content').style.marginLeft = '250px';
-  }
-  function closeSlideMenu(){
-    document.getElementById('menu').style.width = '0';
-    document.getElementById('content').style.marginLeft = '0';
-  }
-</script>
-
-<script>
-  fetch('/map')
-  .then(data=>{
-    return data.json()
-  })
-  .then(data=>{	
-    var opportunitiesTitles = data[1];
-    console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
-  })
-</script>
+  <script>
+    function openSlideMenu(){
+      document.getElementById('menu').style.width = '250px';
+      document.getElementById('content').style.marginLeft = '250px';
+    }
+    function closeSlideMenu(){
+      document.getElementById('menu').style.width = '0';
+      document.getElementById('content').style.marginLeft = '0';
+    }
+  </script>
+  <script>
+    fetch('/map')
+    .then(data=>{
+      return data.json()
+    })
+    .then(data=>{	
+      var opportunitiesTitles = data[1];
+      console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
+    })
+  </script>
 </head>
-<body onload = "fetchOpportunities()">
+
+<body>
 
   <div id="content">
 
@@ -41,14 +42,10 @@
       <a href="#" class="close" onclick="closeSlideMenu()">
         <i class="fas fa-times"></i>
       </a>
+
       <ul id="titles">
       </ul>
     </div>
-		<div id="opportunity-container">
-		<h1>CS OPPORTUNITIES</h1>
-		<p></p>
-		
-		</div>
   </div>	
 </body>
 </html>
