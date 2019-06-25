@@ -15,6 +15,17 @@
     document.getElementById('content').style.marginLeft = '0';
   }
 </script>
+
+<script>
+  fetch('/map')
+  .then(data=>{
+    return data.json()
+  })
+  .then(data=>{	
+    var opportunitiesTitles = data[1];
+    console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
+  })
+</script>
 </head>
 <body onload = "fetchOpportunities()">
 
@@ -30,12 +41,7 @@
       <a href="#" class="close" onclick="closeSlideMenu()">
         <i class="fas fa-times"></i>
       </a>
-      <ul>
-        <li><a href="opportunities.html?id=1">1</a></li>
-        <li><a href="opportunities.html?id=2">2</a></li>
-        <li><a href="opportunities.html?id=3">3</a></li>
-        <li><a href="opportunities.html?id=4">4</a></li>
-        <li><a href="opportunities.html?id=5">5</a></li>
+      <ul id="titles">
       </ul>
     </div>
 		<div id="opportunity-container">
@@ -43,15 +49,6 @@
 		<p></p>
 		
 		</div>
-  </div>
-
-	
-
-
-
-
-
-
-
+  </div>	
 </body>
 </html>
