@@ -24,6 +24,7 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.repackaged.com.google.common.base.Pair;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -191,8 +192,36 @@ public class Datastore {
 		}				
 		return opportunitiesIds;
 	}
+  
+    public List<String> getAllOpportunityLocations()
+	{
+		List<String> opportunities = new ArrayList<>();
 
-    public List<Message> getAllMessages() {
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+                String city = (String) entity.getProperty("city");
+                String country = (String) entity.getProperty("country");
+                // long id = (long) entity.getProperty("id");
+				opportunities.add(city+",+"+country);
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading opportunity title.");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+			
+		}	
+			
+		return opportunities;
+			
+	}
+
+  public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>();
 
         Query query = new Query("Message")
@@ -261,26 +290,26 @@ public class Datastore {
         Query query = new Query("Opportunity")
                 .setFilter(new Query.FilterPredicate("id", FilterOperator.EQUAL, id));
         PreparedQuery results = datastore.prepare(query);
-        Entity userEntity = results.asSingleEntity();
-        if (userEntity == null) {
+        Entity opportunityEntity = results.asSingleEntity();
+        if (opportunityEntity == null) {
             return null;
         }
         Opportunity opportunity = new Opportunity(id,
-                (long) userEntity.getProperty("minAge"),
-                (long) userEntity.getProperty("maxAge"),
-                (String) userEntity.getProperty("title"),
-                (String) userEntity.getProperty("description"),
-                (String) userEntity.getProperty("applyLink"),
-                (String) userEntity.getProperty("advertisementImageUrl"),
-                (String) userEntity.getProperty("gender"),
-                (String) userEntity.getProperty("educationLevel"),
-                (ArrayList<String>) userEntity.getProperty("otherRequirements"),
-                (ArrayList<String>) userEntity.getProperty("additionalLinks"),
-                (ArrayList<String>) userEntity.getProperty("opportunityDetails"),
-                (Date) userEntity.getProperty("dueDate"),
-                (Date) userEntity.getProperty("startDate"),
-                (boolean) userEntity.getProperty("recurring"),
-                (long) userEntity.getProperty("popularity"));
+                (long) opportunityEntity.getProperty("minAge"),
+                (long) opportunityEntity.getProperty("maxAge"),
+                (String) opportunityEntity.getProperty("title"),
+                (String) opportunityEntity.getProperty("description"),
+                (String) opportunityEntity.getProperty("applyLink"),
+                (String) opportunityEntity.getProperty("advertisementImageUrl"),
+                (String) opportunityEntity.getProperty("gender"),
+                (String) opportunityEntity.getProperty("educationLevel"),
+                (ArrayList<String>) opportunityEntity.getProperty("otherRequirements"),
+                (ArrayList<String>) opportunityEntity.getProperty("additionalLinks"),
+                (ArrayList<String>) opportunityEntity.getProperty("opportunityDetails"),
+                (Date) opportunityEntity.getProperty("dueDate"),
+                (Date) opportunityEntity.getProperty("startDate"),
+                (boolean) opportunityEntity.getProperty("recurring"),
+                (long) opportunityEntity.getProperty("popularity"));
 
         return opportunity;
     }
@@ -302,27 +331,30 @@ public class Datastore {
     }
 
     public void storeOpportunity(Opportunity opportunity) {
-        Entity userEntity = new Entity("Opportunity", opportunity.getId());
+        Entity opportunityEntity = new Entity("Opportunity", opportunity.getId());
 
-        userEntity.setProperty("id", opportunity.getId());
-        userEntity.setProperty("minAge", opportunity.getMinAge());
-        userEntity.setProperty("maxAge", opportunity.getMaxAge());
-        userEntity.setProperty("title", opportunity.getTitle());
-        userEntity.setProperty("description", opportunity.getDescription());
-        userEntity.setProperty("applyLink", opportunity.getApplyLink());
-        userEntity.setProperty("advertisementImageUrl", opportunity.getAdvertisementImageUrl());
-        userEntity.setProperty("gender", opportunity.getGender());
-        userEntity.setProperty("educationLevel", opportunity.getEductationLevel());
-        userEntity.setProperty("otherRequirements", opportunity.getOtherRequirments());
-        userEntity.setProperty("additionalLinks", opportunity.getAdditionalLinks());
-        userEntity.setProperty("dueDate", opportunity.getDueDate());
-        userEntity.setProperty("startDate", opportunity.getStartDate());
-        userEntity.setProperty("recurring", opportunity.isRecurring());
-        userEntity.setProperty("popularity", opportunity.getPopularity());
-        userEntity.setProperty("opportunityDetails", opportunity.getOpportunityDetails());
+        opportunityEntity.setProperty("id", opportunity.getId());
+        opportunityEntity.setProperty("minAge", opportunity.getMinAge());
+        opportunityEntity.setProperty("maxAge", opportunity.getMaxAge());
+        opportunityEntity.setProperty("title", opportunity.getTitle());
+        opportunityEntity.setProperty("description", opportunity.getDescription());
+        opportunityEntity.setProperty("applyLink", opportunity.getApplyLink());
+        opportunityEntity.setProperty("advertisementImageUrl", opportunity.getAdvertisementImageUrl());
+        opportunityEntity.setProperty("gender", opportunity.getGender());
+        opportunityEntity.setProperty("educationLevel", opportunity.getEductationLevel());
+        opportunityEntity.setProperty("otherRequirements", opportunity.getOtherRequirments());
+        opportunityEntity.setProperty("additionalLinks", opportunity.getAdditionalLinks());
+        opportunityEntity.setProperty("dueDate", opportunity.getDueDate());
+        opportunityEntity.setProperty("startDate", opportunity.getStartDate());
+        opportunityEntity.setProperty("recurring", opportunity.isRecurring());
+        opportunityEntity.setProperty("popularity", opportunity.getPopularity());
+        opportunityEntity.setProperty("opportunityDetails", opportunity.getOpportunityDetails());
+        opportunityEntity.setProperty("city", opportunity.getCity());
+        opportunityEntity.setProperty("country", opportunity.getCountry());
 
 
-        datastore.put(userEntity);
+
+        datastore.put(opportunityEntity);
 
     }
 

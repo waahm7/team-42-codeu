@@ -8,14 +8,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.appengine.api.mail.MailService.Message;
+import com.google.appengine.repackaged.com.google.gson.Gson;
 import com.google.codeu.data.Datastore;
 import com.google.gson.JsonObject;
+import java.util.List;
 
 /**
  * Handles fetching site statistics.
  */
-@WebServlet("/stats")
-public class StatsPageServlet extends HttpServlet{
+@WebServlet("/map")
+public class MapServlet extends HttpServlet{
 
   private Datastore datastore;
 
@@ -32,18 +34,17 @@ public class StatsPageServlet extends HttpServlet{
       throws IOException {
 
     response.setContentType("application/json");
+    
+    Gson gson = new Gson();
+    List <String> locations = datastore.getAllOpportunityLocations();
+    List <String> titles = datastore.getAllOpportunityTitle();
 
-    int messageCount = datastore.getTotalMessageCount();
-    int userCount = datastore.getTotalUserCount();
-    // com.google.codeu.data.Message LongestMessage = datastore.LongestMessage();
+    String jsonLocationString = gson.toJson(locations);
+    String jsonTitleString = gson.toJson(titles);
 
-    JsonObject jsonObject = new JsonObject();
-    jsonObject.addProperty("userCount", userCount);
-    jsonObject.addProperty("messageCount", messageCount);
-    // jsonObject.addProperty("LongestMessage", LongestMessage.getText());
-    // jsonObject.addProperty("LongestMessageLenght", LongestMessage.getText().length());
-    jsonObject.addProperty("Empty", 0);
 
-    response.getOutputStream().println(jsonObject.toString());
+    String json = "[" + jsonLocationString + "," + jsonTitleString + "]";
+    // response.getOutputStream().println(jsonObject.toString());
+    response.getWriter().write(json);
   }
 }
