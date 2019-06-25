@@ -25,8 +25,8 @@ if (!parameterUsername) {
 
 /** Sets the page title based on the URL parameter username. */
 function setPageTitle() {
-  document.getElementById('page-title').innerText = parameterUsername;
-  document.title = parameterUsername + ' - User Page';
+  document.getElementById('page-title').innerText = "Welcome \xa0\xa0" +parameterUsername + " !";
+  document.title = parameterUsername + ' - Chat';
 }
 
 /**
