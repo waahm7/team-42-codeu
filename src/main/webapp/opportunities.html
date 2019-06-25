@@ -17,18 +17,30 @@
     }
   </script>
   <script>
-    fetch('/map')
-    .then(data=>{
-      return data.json()
+    function displayTitles(){
+      fetch('/map')
+      .then(data=>{
+        return data.json()
+      })
+      .then(data=>{	
+        var id = 0
+        var opportunitiesTitles = data[1];
+        console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
+        opportunitiesTitles.forEach(element => {
+          var menu = document.getElementById("menu")
+          var title = document.createElement('div')
+          id++
+          title.innerHTML = "<li> <a href='opportunities.html?id=" + id + "' > " + element + "<li>"
+          menu.appendChild(title);
+          
+      });
     })
-    .then(data=>{	
-      var opportunitiesTitles = data[1];
-      console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
-    })
+  }
+
   </script>
 </head>
 
-<body>
+<body onload="displayTitles()">
 
   <div id="content">
 
@@ -42,10 +54,10 @@
       <a href="#" class="close" onclick="closeSlideMenu()">
         <i class="fas fa-times"></i>
       </a>
-
-      <ul id="titles">
-      </ul>
     </div>
+  
+  
   </div>	
+
 </body>
 </html>
