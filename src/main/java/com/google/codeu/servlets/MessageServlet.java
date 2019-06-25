@@ -32,7 +32,7 @@ import org.jsoup.safety.Whitelist;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import java.util.ArrayList;
 
 /** Handles fetching and saving {@link Message} instances. */
 @WebServlet("/messages")
@@ -63,9 +63,15 @@ public class MessageServlet extends HttpServlet {
     }
 
     List<Message> messages = datastore.getAllMessages(); //gets all the messages in datastore
-    Gson gson = new Gson();
-    String json = gson.toJson(messages);
+    int total = messages.size();
+    int numberofmessages=20;
+    List<Message> newmessages =new ArrayList<>(numberofmessages);
+    for(int i=0;i<numberofmessages;i++){
+        newmessages.add(messages.get(i));
+    }
 
+    Gson gson = new Gson();
+    String json = gson.toJson(newmessages);
     response.getWriter().println(json);
   }
 
