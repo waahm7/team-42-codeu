@@ -40,11 +40,14 @@ public class Opportunity {
     private boolean recurring;
     private long popularity;
     private String dateFormat="yyyy-dd-mm";
+    private String city;
+    private String country;
+
 
     public Opportunity(long id,long minAge,long maxAge, String title,
                        String description, String applyLink,String advertisementImageUrl,
                        String gender, String eductationLevel, ArrayList<String> otherRequirments,
-                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring) {
+                       ArrayList<String> additionalLinks,ArrayList<String> opportunityDetails, String dueDate, String startDate, boolean recurring, String city, String country) {
         this.id = id;
         this.minAge=minAge;
         this.maxAge=maxAge;
@@ -57,6 +60,9 @@ public class Opportunity {
         this.gender = gender;
         this.eductationLevel = eductationLevel;
         this.opportunityDetails=opportunityDetails;
+        this.city = city;
+        this.country = country;
+
 
         try {
 
@@ -103,6 +109,26 @@ public class Opportunity {
     public void setPopularity(long popularity) {
         this.popularity = popularity;
     }
+
+    public void setCity(String city){
+        this.city = city;
+    }
+
+
+    public String getCity(){
+        return city;
+    }
+
+
+    public void setCountry(String country){
+        this.country = country;
+    }
+
+
+    public String getCountry(){
+        return country;
+    }
+
 
     public Opportunity(long id, long minAge, long maxAge, String title,
                        String description, String applyLink, String advertisementImageUrl,

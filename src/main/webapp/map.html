@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Opportunity Map</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='/js/config.js'></script>
+
+    <script>
+        const mapAPI = config.api
+        var script = document.createElement( 'script' );
+        script.type = 'text/javascript';
+        script.src = "https://maps.googleapis.com/maps/api/js?key=" + mapAPI;
+        document.head.append( script );
+    </script>
+
+    <script>  
+        function getCoordinates(){
+            const mapAPI = config.api
+            
+            const map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 0, lng: 0},
+                zoom:3
+            });
+
+            var opportunityID = 0
+            fetch('/map') //get locations from back-end 
+            .then(data=>{
+                return data.json()
+            })
+            .then(response=>{
+                var opportunitiesLocations = response[0]; //address which includes city + country
+                var opportunitiesTitles = response[1];
+                opportunitiesLocations.forEach((location)=>{
+                    fetch('https://maps.googleapis.com/maps/api/geocode/json?address='+location+'&key='+mapAPI)
+                    .then(json=>{
+                        return json.json()
+                    })
+                    .then(function(jsonObject){
+                        return (jsonObject.results[0].geometry.location) //parse json object to get coordinates
+                    })
+                    .then((mark)=>{
+                        const marker =  new google.maps.Marker({
+                            position: {lat: mark.lat, lng: mark.lng},
+                            map: map,
+                            animation:google.maps.Animation.DROP,
+                            title: opportunitiesTitles[opportunityID]
+                        });  
+                        opportunityID = opportunityID + 1 //id are starting from 1
+                        const infoWindow = new google.maps.InfoWindow({
+                            content: "<a href=opportunities.html?id=" + opportunityID + ">" + "Learn More Here </a>"
+                        });
+                        marker.addListener('click', function() {
+                            toggleBounce();
+                            infoWindow.open(map, marker);
+                            map.setZoom(5);
+                            map.setCenter(marker.getPosition());
+                            window.setTimeout(function() {map.setZoom(3); infoWindow.close(map, marker);},5000);
+                        });
+                        function toggleBounce() {
+                            if (marker.getAnimation() !== null) {
+                            marker.setAnimation(null);
+                            } else {
+                            marker.setAnimation(google.maps.Animation.BOUNCE);
+                            }
+                        }
+                    });
+                });
+            });
+        };
+     </script>
+
+    <style>
+        #map{
+        height: 100%;
+        }
+        html, body{
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+</head>
+
+<body onload="getCoordinates();">
+ <h1>Opportunities Map</h1>
+ <div id="map" ></div>
+</body>
+
+</html>
