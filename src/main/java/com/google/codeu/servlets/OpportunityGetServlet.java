@@ -2,6 +2,7 @@ package com.google.codeu.servlets;
 
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Opportunity;
+import com.google.appengine.repackaged.com.google.gson.Gson;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -32,23 +33,33 @@ public class OpportunityGetServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws IOException {
 
-        response.setContentType("text/html");
+        response.setContentType("application/json");
+        Gson gson = new Gson();
+
+        String error = "Invalid ID";
+        String jsonError = gson.toJson(error);
         int id = -1;
         try {
             id = Integer.parseInt(request.getParameter("id"));
         } catch (Exception e) {
-            response.getOutputStream().println("Invalid id");
+            response.getWriter().write(jsonError);
             return;
 
         }
         if (id < 1) {
-            response.getOutputStream().println("invalid id");
+            response.getWriter().write(jsonError);
             return;
         }
         Opportunity opportunity = datastore.getOpportunity(id);
         if (opportunity == null) {
-            response.getOutputStream().println("invalid id");
+            response.getWriter().write(jsonError);
             return;
         }
+
+        String jsonInString = gson.toJson(opportunity);
+        response.getWriter().write(jsonInString);
+        
+
+
     }
 }
