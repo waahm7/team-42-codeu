@@ -24,8 +24,6 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.repackaged.com.google.common.base.Pair;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -309,7 +307,10 @@ public class Datastore {
                 (Date) opportunityEntity.getProperty("dueDate"),
                 (Date) opportunityEntity.getProperty("startDate"),
                 (boolean) opportunityEntity.getProperty("recurring"),
-                (long) opportunityEntity.getProperty("popularity"));
+                (long) opportunityEntity.getProperty("popularity"),
+                (String) opportunityEntity.getProperty("city"),
+                (String) opportunityEntity.getProperty("country"));
+
 
         return opportunity;
     }
