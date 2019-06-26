@@ -11,16 +11,19 @@
       function openSlideMenu(){
         document.getElementById('menu').style.width = '250px';
         document.getElementById('content').style.marginLeft = '250px';
+        document.getElementById('content').style.opacity = '0.5';
+        
       }
       function closeSlideMenu(){
         document.getElementById('menu').style.width = '0';
         document.getElementById('content').style.marginLeft = '0';
+        document.getElementById('content').style.opacity = '1';
       }
     </script>
     <script>
       function displayTitles(){
         fetch('/map')
-        .then(data=>{
+        .then(data=>{ 
           return data.json()
         })
         .then(data=>{	
