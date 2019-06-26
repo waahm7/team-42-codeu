@@ -5,6 +5,7 @@
   <title>CS OPPORTUNITIES</title>
   <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
   <script src = "/js/opportunity.js"></script>
+  <link rel="stylesheet" href="/css/opportunity.css">
   <link rel="stylesheet" href="/css/opportunities.css">
   <script>
     function openSlideMenu(){
@@ -27,10 +28,11 @@
         var opportunitiesTitles = data[1];
         console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
         opportunitiesTitles.forEach(element => {
-          var menu = document.getElementById("menu")
+          var menuContainer = document.getElementById("menu")
+          var menu = menuContainer.getElementsByTagName("ul")[0]
           var title = document.createElement('div')
           id++
-          title.innerHTML = "<li> <a href='opportunities.html?id=" + id + "' > " + element + "<li>"
+          title.innerHTML = "<li> <a href='opportunities.html?id=" + id + "' > " + element + "</a></li>"
           menu.appendChild(title);
           
       });
@@ -38,26 +40,104 @@
   }
 
   </script>
+  <script>
+    const displayOpportunity = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const parameterId = urlParams.get('id');
+      const url = '/getOpportunity?id=' + parameterId;
+      fetch(url).then((response) => {
+        return response.json();
+      }).then((opportunity) => {
+        console.log(opportunity)
+        //front end build here
+        document.getElementById('title').innerHTML = "ABC"
+
+        
+
+      });
+    }
+    </script>
 </head>
 
-<body onload="displayTitles()">
-
-  <div id="content">
-
+<body onload="displayTitles(); displayOpportunity()">
+    
+    <div id="menu" class="nav">
+      <a href="#" class="close" onclick="closeSlideMenu()">
+          <i class="fas fa-times"></i>
+        </a>
+      <ul></ul>
+    </div>
+    
+    <div id="content">
+      
     <span class="slide">
       <a href="#" onclick="openSlideMenu()">
         <i class="fas fa-bars"></i>
       </a>
     </span>
+    
+      
 
-    <div id="menu" class="nav">
-      <a href="#" class="close" onclick="closeSlideMenu()">
-        <i class="fas fa-times"></i>
-      </a>
-    </div>
-  
-  
+      <div>
+        <h2 id = 'title' class='opportunity-title'> Title </h2>
+        <p></p>
+      </div>
+
+      <div>
+        <image class='OpportunityImage' src=#></image>
+      </div>
+    
+      <div>
+        <p> DESCRIPTION </p>
+      </div>
+
+      <div>
+        <h2 class='opportunity-title'> ScholarShip Details </h2>
+      </div>
+
+      <div>
+        <ul>
+          <li> Details <li>
+        </ul>
+      </div>
+
+      <div>
+          <h2 class='opportunity-title'> Eligibility Criteria </h2>
+      </div>
+
+      <div>
+          <ul>
+            <li> Other Req <li>
+          </ul>
+        </div>
+    
+        <div>
+            <h3 class='opportunity-title'>
+            Due Date: 
+            <font class='blackText'> DUE STRING </font>
+            </h3>
+        </div>
+
+        <div>
+          <a style='text-decoration: none;' target='blank' href=applyLink>
+            <button id='applyButton' onclick=applyLink>
+              <span id='applyButtonText'>Apply Now</span>
+            </button>
+          </a>
+        </div>
+    
+
+
+        <div>
+            <h2 class='opportunity-title'> Additional Links </h2>
+        </div>
+        
+        <div>
+            <ul>
+              <li> ADIDIONAL LINK <li>
+            </ul>
+          </div>
   </div>	
 
 </body>
-</html>
+</html> 
