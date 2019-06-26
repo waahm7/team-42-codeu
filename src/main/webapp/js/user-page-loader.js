@@ -48,8 +48,15 @@ function showMessageFormIfViewingSelf() {
 }
 
 /** Fetches messages and add them to the page. */
-function fetchMessages() {
-  const url = '/messages?user=' + parameterUsername;
+function fetchMessages(button) {
+var url;
+   if(button===undefined){
+     url = '/messages?user=' + parameterUsername;
+  }
+  else {
+     button = encodeURIComponent(button);
+     url='/messages?user='+parameterUsername+'&buttonName='+button;
+  }
   fetch(url)
       .then((response) => {
         return response.json();
@@ -57,7 +64,7 @@ function fetchMessages() {
       .then((messages) => {
         const messagesContainer = document.getElementById('message-container');
         if (messages.length == 0) {
-          messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
+          messagesContainer.innerHTML = '<p>No messages found</p>';
         } else {
           messagesContainer.innerHTML = '';
         }
@@ -125,3 +132,21 @@ function fetchBlobstoreUrlAndShowForm() {
             messageForm.classList.remove('hidden');
           });
       }
+
+/* Return the messages according to button pressed. For example 1 means fetch latest 20 messages.
+2 means fetch messages 20 to 40 and so on. User will be able to see the last 100 messages*/
+function button1pressed(){
+    fetchMessages("1");
+}
+function button2pressed(){
+    fetchMessages("2");
+}
+function button3pressed(){
+    fetchMessages("3");
+}
+function button4pressed(){
+    fetchMessages("4");
+}
+function button5pressed(){
+    fetchMessages("5");
+}

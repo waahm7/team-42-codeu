@@ -30,8 +30,20 @@ limitations under the License.
       </ul>
     </nav>
 
-    <h1>Community Chat </h1>
+    <h1>Message Board Chat </h1>
     <h2 id="page-title">User Page</h2>
+
+   <FORM NAME="form1" ACTION="/messages" METHOD="GET">
+       <INPUT TYPE="HIDDEN" NAME="buttonName">
+       <INPUT TYPE="HIDDEN" Name="user">
+       newest
+        <INPUT TYPE="BUTTON" VALUE="1" ONCLICK="button1pressed()">
+       <INPUT TYPE="BUTTON" VALUE="2" ONCLICK="button2pressed()">
+       <INPUT TYPE="BUTTON" VALUE="3" ONCLICK="button3pressed()">
+       <INPUT TYPE="BUTTON" VALUE="4" ONCLICK="button4pressed()">
+       <INPUT TYPE="BUTTON" VALUE="5" ONCLICK="button5pressed()">
+       oldest
+   </FORM>
 
     <form id="my-form" class="hidden" method="POST" enctype="multipart/form-data">
         <p>Type some text:</p>

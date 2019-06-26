@@ -63,13 +63,26 @@ public class MessageServlet extends HttpServlet {
     }
 
     List<Message> messages = datastore.getAllMessages(); //gets all the messages in datastore
+    String page=request.getParameter("buttonName");
+    int start, end;
+    int pagenumber;
+    if(page==null){
+      pagenumber=1;
+    }
+    else {
+      pagenumber = Integer.parseInt(page);
+    }
     int total = messages.size();
     int numberofmessages=20;
     List<Message> newmessages =new ArrayList<>(numberofmessages);
-    for(int i=0;i<numberofmessages;i++){
-        newmessages.add(messages.get(i));
-    }
-
+       pagenumber--;
+       start= pagenumber * numberofmessages;
+       end= start + numberofmessages;
+       if(start<total){
+         for(int i=start; i<end && i<total ;i++){
+           newmessages.add(messages.get(i));
+         }
+       }
     Gson gson = new Gson();
     String json = gson.toJson(newmessages);
     response.getWriter().println(json);
