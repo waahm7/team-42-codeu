@@ -1,115 +1,107 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>CS OPPORTUNITIES</title>
-  <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
-  <script src = "/js/opportunity.js"></script>
-  <link rel="stylesheet" href="/css/opportunity.css">
-  <link rel="stylesheet" href="/css/opportunities.css">
-  <script>
-    function openSlideMenu(){
-      document.getElementById('menu').style.width = '250px';
-      document.getElementById('content').style.marginLeft = '250px';
-    }
-    function closeSlideMenu(){
-      document.getElementById('menu').style.width = '0';
-      document.getElementById('content').style.marginLeft = '0';
-    }
-  </script>
-  <script>
-    function displayTitles(){
-      fetch('/map')
-      .then(data=>{
-        return data.json()
-      })
-      .then(data=>{	
-        var id = 0
-        var opportunitiesTitles = data[1];
-        console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
-        opportunitiesTitles.forEach(element => {
-          var menuContainer = document.getElementById("menu")
-          var menu = menuContainer.getElementsByTagName("ul")[0]
-          var title = document.createElement('li')
-          id++
-          title.innerHTML = "<a href='opportunities.html?id=" + id + "' > " + element + "</a>"
-          menu.appendChild(title);
-          
-      });
-    })
-  }
-
-  </script>
-  <script>
-    const displayOpportunity = () => {
-      const urlParams = new URLSearchParams(window.location.search);
-      const parameterId = urlParams.get('id');
-      const url = '/getOpportunity?id=' + parameterId;
-      fetch(url).then((response) => {
-        return response.json();
-      }).then((opportunity) => {
-        // console.log(opportunity)
-        //front end build here
-        document.getElementById('title').innerHTML = opportunity.title
-        document.getElementById('due-date').innerHTML = opportunity.dueDate
-        document.getElementById('img').src = opportunity.advertisementImageUrl
-        document.getElementById('desc').innerHTML = opportunity.description
-        document.getElementById('applyLink').href = opportunity.applyLink
-        var details = opportunity.opportunityDetails
-        details.forEach(detail=>{
-          console.log(detail);
-          var detailsContainer = document.getElementById("details")
-          var details = detailsContainer.getElementsByTagName("ul")[0]
-          var detailPoint = document.createElement("li")
-          detailPoint.innerHTML = detail
-          details.appendChild(detailPoint)
-        });
-        var otherRequirments = opportunity.otherRequirments
-        otherRequirments.forEach(req=>{
-          console.log(req);
-          var reqContainer = document.getElementById("other-req")
-          var reqs = reqContainer.getElementsByTagName("ul")[0]
-          var reqPoint = document.createElement("li")
-          reqPoint.innerHTML = req
-          reqs.appendChild(reqPoint)
-        });
-        var additionalLinks = opportunity.additionalLinks
-        additionalLinks.forEach(link=>{
-          console.log(link);
-          var linkContainer = document.getElementById("additional-links")
-          var links = linkContainer.getElementsByTagName("ul")[0]
-          var linkPoint = document.createElement("li")
-          linkPoint.innerHTML = link
-          links.appendChild(linkPoint)
-        });
-
-
-        
-
-      });
-    }
+  <head>
+    <title>CS OPPORTUNITIES</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
+    <script src = "/js/opportunity.js"></script>
+    <link rel="stylesheet" href="/css/opportunity.css">
+    <link rel="stylesheet" href="/css/opportunities.css">
+    <script>
+      function openSlideMenu(){
+        document.getElementById('menu').style.width = '250px';
+        document.getElementById('content').style.marginLeft = '250px';
+      }
+      function closeSlideMenu(){
+        document.getElementById('menu').style.width = '0';
+        document.getElementById('content').style.marginLeft = '0';
+      }
     </script>
-</head>
+    <script>
+      function displayTitles(){
+        fetch('/map')
+        .then(data=>{
+          return data.json()
+        })
+        .then(data=>{	
+          var id = 0
+          var opportunitiesTitles = data[1];
+          console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
+          opportunitiesTitles.forEach(element => {
+            var menuContainer = document.getElementById("menu")
+            var menu = menuContainer.getElementsByTagName("ul")[0]
+            var title = document.createElement('li')
+            id++
+            title.innerHTML = "<a href='opportunities.html?id=" + id + "' > " + element + "</a>"
+            menu.appendChild(title);
+            
+        });
+      })
+    }
 
-<body onload="displayTitles(); displayOpportunity()">
-    
+    </script>
+    <script>
+      const displayOpportunity = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const parameterId = urlParams.get('id');
+        const url = '/getOpportunity?id=' + parameterId;
+        fetch(url).then((response) => {
+          return response.json();
+        }).then((opportunity) => {
+          document.getElementById('title').innerHTML = opportunity.title
+          document.getElementById('due-date').innerHTML = opportunity.dueDate
+          document.getElementById('img').src = opportunity.advertisementImageUrl
+          document.getElementById('desc').innerHTML = opportunity.description
+          document.getElementById('applyLink').href = opportunity.applyLink
+          var details = opportunity.opportunityDetails
+          details.forEach(detail=>{
+            console.log(detail);
+            var detailsContainer = document.getElementById("details")
+            var details = detailsContainer.getElementsByTagName("ul")[0]
+            var detailPoint = document.createElement("li")
+            detailPoint.innerHTML = detail
+            details.appendChild(detailPoint)
+          });
+          var otherRequirments = opportunity.otherRequirments
+          otherRequirments.forEach(req=>{
+            console.log(req);
+            var reqContainer = document.getElementById("other-req")
+            var reqs = reqContainer.getElementsByTagName("ul")[0]
+            var reqPoint = document.createElement("li")
+            reqPoint.innerHTML = req
+            reqs.appendChild(reqPoint)
+          });
+          var additionalLinks = opportunity.additionalLinks
+          additionalLinks.forEach(link=>{
+            console.log(link);
+            var linkContainer = document.getElementById("additional-links")
+            var links = linkContainer.getElementsByTagName("ul")[0]
+            var linkPoint = document.createElement("li")
+            linkPoint.innerHTML = link
+            links.appendChild(linkPoint)
+          });
+        });
+      }
+      </script>
+  </head>
+
+  <body onload="displayTitles(); displayOpportunity()">
+      
     <div id="menu" class="nav">
       <a href="#" class="close" onclick="closeSlideMenu()">
-          <i class="fas fa-times"></i>
-        </a>
+        <i class="fas fa-times"></i>
+      </a>
       <ul></ul>
     </div>
-    
+      
     <div id="content">
-      
-    <span class="slide">
-      <a href="#" onclick="openSlideMenu()">
-        <i class="fas fa-bars"></i>
-      </a>
-    </span>
+        
+      <span class="slide">
+        <a href="#" onclick="openSlideMenu()">
+          <i class="fas fa-bars"></i>
+        </a>
+      </span>
     
-      
-
       <div>
         <h2 id = 'title' class='opportunity-title'> Title </h2>
         <p></p>
@@ -128,8 +120,7 @@
       </div>
 
       <div id = 'details'>
-        <ul>
-        </ul>
+        <ul></ul>
       </div>
 
       <div>
@@ -137,36 +128,30 @@
       </div>
 
       <div id = 'other-req'>
-          <ul>
-          </ul>
-        </div>
-    
-        <div>
-            <h3 class='opportunity-title'>
-            Due Date: 
-            <font id= 'due-date' class='blackText'> DUE STRING </font>
-            </h3>
-        </div>
+        <ul></ul>
+      </div>
 
-        <div>
-          <a id = 'applyLink' style='text-decoration: none;' target='blank' href=applyLink>
-            <button id='applyButton' onclick=applyLink>
-              <span id='applyButtonText'>Apply Now</span>
-            </button>
-          </a>
-        </div>
-    
+      <div>
+        <h3 class='opportunity-title'>
+          Due Date: 
+          <font id= 'due-date' class='blackText'> DUE STRING </font>
+        </h3>
+      </div>
 
+      <div>
+        <a id = 'applyLink' style='text-decoration: none;' target='blank' href=applyLink>
+          <button id='applyButton' onclick=applyLink>
+            <span id='applyButtonText'>Apply Now</span>
+          </button>
+        </a>
+      </div>
 
-        <div>
-            <h2 class='opportunity-title'> Additional Links </h2>
-        </div>
+      <div><h2 class='opportunity-title'> Additional Links </h2></div>
         
-        <div id='aditional-links'>
-            <ul>
-            </ul>
-          </div>
-  </div>	
-
-</body>
+      <div id='aditional-links'>
+        <ul></ul>
+      </div>
+    
+    </div>	
+  </body>
 </html> 
