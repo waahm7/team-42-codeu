@@ -30,9 +30,9 @@
         opportunitiesTitles.forEach(element => {
           var menuContainer = document.getElementById("menu")
           var menu = menuContainer.getElementsByTagName("ul")[0]
-          var title = document.createElement('div')
+          var title = document.createElement('li')
           id++
-          title.innerHTML = "<li> <a href='opportunities.html?id=" + id + "' > " + element + "</a></li>"
+          title.innerHTML = "<a href='opportunities.html?id=" + id + "' > " + element + "</a>"
           menu.appendChild(title);
           
       });
@@ -48,9 +48,41 @@
       fetch(url).then((response) => {
         return response.json();
       }).then((opportunity) => {
-        console.log(opportunity)
+        // console.log(opportunity)
         //front end build here
         document.getElementById('title').innerHTML = opportunity.title
+        document.getElementById('due-date').innerHTML = opportunity.dueDate
+        document.getElementById('img').src = opportunity.advertisementImageUrl
+        document.getElementById('desc').innerHTML = opportunity.description
+        document.getElementById('applyLink').href = opportunity.applyLink
+        var details = opportunity.opportunityDetails
+        details.forEach(detail=>{
+          console.log(detail);
+          var detailsContainer = document.getElementById("details")
+          var details = detailsContainer.getElementsByTagName("ul")[0]
+          var detailPoint = document.createElement("li")
+          detailPoint.innerHTML = detail
+          details.appendChild(detailPoint)
+        });
+        var otherRequirments = opportunity.otherRequirments
+        otherRequirments.forEach(req=>{
+          console.log(req);
+          var reqContainer = document.getElementById("other-req")
+          var reqs = reqContainer.getElementsByTagName("ul")[0]
+          var reqPoint = document.createElement("li")
+          reqPoint.innerHTML = req
+          reqs.appendChild(reqPoint)
+        });
+        var additionalLinks = opportunity.additionalLinks
+        additionalLinks.forEach(link=>{
+          console.log(link);
+          var linkContainer = document.getElementById("additional-links")
+          var links = linkContainer.getElementsByTagName("ul")[0]
+          var linkPoint = document.createElement("li")
+          linkPoint.innerHTML = link
+          links.appendChild(linkPoint)
+        });
+
 
         
 
@@ -84,20 +116,19 @@
       </div>
 
       <div>
-        <image class='OpportunityImage' src=#></image>
+        <image id='img' class='OpportunityImage' src=#></image>
       </div>
     
       <div>
-        <p> DESCRIPTION </p>
+        <p id = 'desc'> DESCRIPTION </p>
       </div>
 
       <div>
         <h2 class='opportunity-title'> ScholarShip Details </h2>
       </div>
 
-      <div>
+      <div id = 'details'>
         <ul>
-          <li> Details <li>
         </ul>
       </div>
 
@@ -105,21 +136,20 @@
           <h2 class='opportunity-title'> Eligibility Criteria </h2>
       </div>
 
-      <div>
+      <div id = 'other-req'>
           <ul>
-            <li> Other Req <li>
           </ul>
         </div>
     
         <div>
             <h3 class='opportunity-title'>
             Due Date: 
-            <font class='blackText'> DUE STRING </font>
+            <font id= 'due-date' class='blackText'> DUE STRING </font>
             </h3>
         </div>
 
         <div>
-          <a style='text-decoration: none;' target='blank' href=applyLink>
+          <a id = 'applyLink' style='text-decoration: none;' target='blank' href=applyLink>
             <button id='applyButton' onclick=applyLink>
               <span id='applyButtonText'>Apply Now</span>
             </button>
@@ -132,9 +162,8 @@
             <h2 class='opportunity-title'> Additional Links </h2>
         </div>
         
-        <div>
+        <div id='aditional-links'>
             <ul>
-              <li> ADIDIONAL LINK <li>
             </ul>
           </div>
   </div>	
