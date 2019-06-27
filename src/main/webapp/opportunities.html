@@ -109,7 +109,8 @@
           </script>
   </head>
 
-  <body onload="displayTitles(); displayOpportunity()">
+  <body onload="loadFunc(); displayTitles(); displayOpportunity()">
+    <div id="loader"></div>
       
     <div id="menu" class="nav">
       <a href="#" class="close" onclick="closeSlideMenu()">
@@ -119,7 +120,7 @@
       <ul id="myUL"></ul>
     </div>
       
-    <div id="content">
+    <div id="content" style="display:none;" class="animate-bottom">
         
       <span class="slide">
         <a href="#" onclick="openSlideMenu()">
@@ -178,5 +179,21 @@
       </div>
     
     </div>	
+
+
+
+  <script>
+    var myVar;
+    
+    function loadFunc() {
+      myVar = setTimeout(showPage, 700);
+    }
+    
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("content").style.display = "block";
+    }
+  </script>
+  
   </body>
 </html> 
