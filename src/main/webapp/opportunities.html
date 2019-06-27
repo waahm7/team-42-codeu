@@ -56,7 +56,18 @@
           document.getElementById('img').src = opportunity.advertisementImageUrl
           document.getElementById('desc').innerHTML = opportunity.description
           document.getElementById('applyLink').href = opportunity.applyLink
+          
+          var detailsContainer = document.getElementById("details")
+          var details = detailsContainer.getElementsByTagName("ul")[0]
+          var detailPoint = document.createElement("li")
+          detailPoint.innerHTML = "Location: " + opportunity.city + ", " + opportunity.country 
+          details.appendChild(detailPoint)
+          var detailPoint = document.createElement("li")
+          detailPoint.innerHTML = "Start Date: " + opportunity.startDate 
+          details.appendChild(detailPoint)
           var details = opportunity.opportunityDetails
+
+
           details.forEach(detail=>{
             console.log(detail);
             var detailsContainer = document.getElementById("details")
@@ -65,6 +76,26 @@
             detailPoint.innerHTML = detail
             details.appendChild(detailPoint)
           });
+
+          var reqContainer = document.getElementById("other-req")
+          var reqs = reqContainer.getElementsByTagName("ul")[0]
+          var reqPoint = document.createElement("li")
+          reqPoint.innerHTML = "Minimum Age: " + opportunity.minAge
+          reqs.appendChild(reqPoint)
+
+          var reqPoint = document.createElement("li")
+          reqPoint.innerHTML = "Maximum Age: " + opportunity.maxAge
+          reqs.appendChild(reqPoint)
+
+          var reqPoint = document.createElement("li")
+          reqPoint.innerHTML = "Education Level: " + opportunity.eductationLevel
+          reqs.appendChild(reqPoint)
+
+          var reqPoint = document.createElement("li")
+          reqPoint.innerHTML = "Open For Gender(s): " + opportunity.gender
+          reqs.appendChild(reqPoint)
+
+
           var otherRequirments = opportunity.otherRequirments
           otherRequirments.forEach(req=>{
             console.log(req);
@@ -120,7 +151,7 @@
       <ul id="myUL"></ul>
     </div>
       
-    <div id="content" style="display:none;" class="animate-bottom">
+    <div id="content" style="display:none;" class="animate-bottom"> 
         
       <span class="slide">
         <a href="#" onclick="openSlideMenu()">
