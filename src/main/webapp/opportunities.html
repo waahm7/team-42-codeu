@@ -29,12 +29,25 @@
         .then(data=>{	
           var id = 0
           var opportunitiesTitles = data[1];
-          console.log(opportunitiesTitles) //will use this to render side panel div, ids will be incremental, not catering recurring memebr for now
+          var opportunitiesDueDate = data[2];
+
+          console.log(opportunitiesDueDate)
+          
+
           opportunitiesTitles.forEach(element => {
-            var menuContainer = document.getElementById("menu")
-            var menu = menuContainer.getElementsByTagName("ul")[0]
-            var title = document.createElement('li')
+            var date = new Date (opportunitiesDueDate[id])
+            var today = new Date();
+            var classID = "active-list" 
+
+            if (date.getTime() > today.getTime()){
+              classID = "active-list"
+            } else if (date.getTime() < today.getTime()) {
+              classID = "archived-list"
+            }
+
             id++
+            var menu = document.getElementById(classID)
+            var title = document.createElement('li')
             title.innerHTML = "<a href='opportunities.html?id=" + id + "' > " + element + "</a>"
             menu.appendChild(title);
             
@@ -69,7 +82,7 @@
 
 
           details.forEach(detail=>{
-            console.log(detail);
+            // console.log(detail);
             var detailsContainer = document.getElementById("details")
             var details = detailsContainer.getElementsByTagName("ul")[0]
             var detailPoint = document.createElement("li")
@@ -98,7 +111,7 @@
 
           var otherRequirments = opportunity.otherRequirments
           otherRequirments.forEach(req=>{
-            console.log(req);
+            // console.log(req);
             var reqContainer = document.getElementById("other-req")
             var reqs = reqContainer.getElementsByTagName("ul")[0]
             var reqPoint = document.createElement("li")
@@ -107,7 +120,7 @@
           });
           var additionalLinks = opportunity.additionalLinks
           additionalLinks.forEach(link=>{
-            console.log(link);
+            // console.log(link);
             var linkContainer = document.getElementById("additional-links")
             var links = linkContainer.getElementsByTagName("ul")[0]
             var linkPoint = document.createElement("li")
@@ -118,37 +131,66 @@
       }
       </script>
       <script>
-          function myFunction() {
+          function searchFunction() {
             // Declare variables
             var input, filter, ul, li, a, i, txtValue;
             input = document.getElementById('myInput');
             filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName('li');
-          
-            // Loop through all list items, and hide those who don't match the search query
-            for (i = 0; i < li.length; i++) {
-              a = li[i].getElementsByTagName("a")[0];
-              txtValue = a.textContent || a.innerText;
-              if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                li[i].style.display = "";
-              } else {
-                li[i].style.display = "none";
+            var ULs = document.getElementsByClassName('search');
+            // console.log(ULs)
+            for (j = 0; j < ULs.length; j++) {
+              ul = ULs[j]
+              li = ul.getElementsByTagName('li'); 
+            
+              // Loop through all list items, and hide those who don't match the search query
+              for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                txtValue = a.textContent || a.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                  li[i].style.display = "";
+                } else {
+                  li[i].style.display = "none";
+                }
               }
-            }
+            } 
           }
           </script>
   </head>
-
+  
   <body onload="loadFunc(); displayTitles(); displayOpportunity()">
-    <div id="loader"></div>
+      <div id="loader"></div>
       
-    <div id="menu" class="nav">
-      <a href="#" class="close" onclick="closeSlideMenu()">
-        <i class="fas fa-times"></i>
-      </a>
-      <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for Opportunities..">
-      <ul id="myUL"></ul>
+      <div id="menu" class="nav">
+        <span>
+          <a href="#" class="close" onclick="closeSlideMenu()">
+            <i class="fas fa-times"></i>
+          </a>
+          <p></p>
+        </span>
+        <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for Opportunities..">
+        <button class="dropdown-btn">Active
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <ul id="active-list" class="search"></ul>
+        </div>
+        
+        <button class="dropdown-btn">Archived
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <ul id="archived-list" class="search"></ul>
+        </div>
+        
+        
+        <button class="dropdown-btn">Reccuring
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <ul id="recurring-list" class="search"></ul>
+        </div>
+      
+    
     </div>
       
     <div id="content" style="display:none;" class="animate-bottom"> 
@@ -224,6 +266,23 @@
       document.getElementById("loader").style.display = "none";
       document.getElementById("content").style.display = "block";
     }
+  </script>
+
+  <script>
+    var dropdown = document.getElementsByClassName("dropdown-btn");
+    var i;
+
+    for (i = 0; i < dropdown.length; i++) {
+      dropdown[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var dropdownContent = this.nextElementSibling;
+        if (dropdownContent.style.display === "block") {
+          dropdownContent.style.display = "none";
+        } else {
+          dropdownContent.style.display = "block";
+        }
+      });
+    } 
   </script>
   
   </body>

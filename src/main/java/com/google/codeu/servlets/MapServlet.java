@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.appengine.api.mail.MailService.Message;
 import com.google.appengine.repackaged.com.google.gson.Gson;
 import com.google.codeu.data.Datastore;
-import com.google.gson.JsonObject;
 import java.util.List;
+import java.util.Date;
+
 
 /**
  * Handles fetching site statistics.
@@ -38,12 +38,14 @@ public class MapServlet extends HttpServlet{
     Gson gson = new Gson();
     List <String> locations = datastore.getAllOpportunityLocations();
     List <String> titles = datastore.getAllOpportunityTitle();
+    List <String> dueDate = datastore.getAllOpportunityDueDate();
 
     String jsonLocationString = gson.toJson(locations);
     String jsonTitleString = gson.toJson(titles);
+    String jsonTitleDueDate = gson.toJson(dueDate);
 
 
-    String json = "[" + jsonLocationString + "," + jsonTitleString + "]";
+    String json = "[" + jsonLocationString + "," + jsonTitleString + "," + jsonTitleDueDate + "]";
     // response.getOutputStream().println(jsonObject.toString());
     response.getWriter().write(json);
   }
