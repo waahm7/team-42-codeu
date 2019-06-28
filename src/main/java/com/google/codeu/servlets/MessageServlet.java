@@ -66,12 +66,7 @@ public class MessageServlet extends HttpServlet {
     String page=request.getParameter("buttonName");
     int start, end;
     int pageNumber;
-    if(page==null){
-      pageNumber=1;
-    }
-    else {
-      pageNumber = Integer.parseInt(page);
-    }
+    pageNumber= (page==null) ? 1 : Integer.parseInt(page);
     int total = messages.size();
     int numberOfMessages=20;
     List<Message> newMessages =new ArrayList<>(numberOfMessages);
