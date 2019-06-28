@@ -64,11 +64,12 @@ public class MessageServlet extends HttpServlet {
 
     List<Message> messages = datastore.getAllMessages(); //gets all the messages in datastore
     String page=request.getParameter("buttonName");
+    String numberOfPostPerPage=request.getParameter("numberOfPostsPerPage");
     int start, end;
     int pageNumber;
     pageNumber= (page==null) ? 1 : Integer.parseInt(page);
     int total = messages.size();
-    int numberOfMessages=20;
+    int numberOfMessages=(numberOfPostPerPage==null) ? 20 : Integer.parseInt(numberOfPostPerPage);
     List<Message> newMessages =new ArrayList<>(numberOfMessages);
        pageNumber--;
        start= pageNumber * numberOfMessages;
