@@ -31,6 +31,11 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+
 
 /**
  * Provides access to the data stored in Datastore.
@@ -358,6 +363,33 @@ public class Datastore {
         datastore.put(opportunityEntity);
 
     }
+
+    public List<String> getAllOpportunityDueDate(){
+		List<String> opportunitiesDueDate = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+                Date dueDate = (Date) entity.getProperty("dueDate");
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(dueDate);
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                String date = year+"-"+month+"-"+day;
+				opportunitiesDueDate.add(date);
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading opportunity date");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+		}				
+		return opportunitiesDueDate;
+	}
 
 
 }
