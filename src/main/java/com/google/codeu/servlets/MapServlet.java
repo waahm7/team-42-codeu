@@ -39,13 +39,15 @@ public class MapServlet extends HttpServlet{
     List <String> locations = datastore.getAllOpportunityLocations();
     List <String> titles = datastore.getAllOpportunityTitle();
     List <String> dueDate = datastore.getAllOpportunityDueDate();
+    List <Boolean> recc = datastore.getAllOpportunityReccuuring();
 
     String jsonLocationString = gson.toJson(locations);
     String jsonTitleString = gson.toJson(titles);
-    String jsonTitleDueDate = gson.toJson(dueDate);
+    String jsonDueDate = gson.toJson(dueDate);
+    String jsonRecc = gson.toJson(recc);
 
 
-    String json = "[" + jsonLocationString + "," + jsonTitleString + "," + jsonTitleDueDate + "]";
+    String json = "[" + jsonLocationString + "," + jsonTitleString + "," + jsonDueDate + "," + jsonRecc + "]";
     // response.getOutputStream().println(jsonObject.toString());
     response.getWriter().write(json);
   }

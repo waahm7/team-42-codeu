@@ -30,6 +30,7 @@
           var id = 0
           var opportunitiesTitles = data[1];
           var opportunitiesDueDate = data[2];
+          var opportunitiesRecuurintStatus = data[3];
 
           console.log(opportunitiesDueDate)
           
@@ -42,7 +43,11 @@
             if (date.getTime() > today.getTime()){
               classID = "active-list"
             } else if (date.getTime() < today.getTime()) {
-              classID = "archived-list"
+              if (opportunitiesRecuurintStatus[id] === true){
+                classID = "recurring-list";
+              } else {
+                classID = "archived-list";
+              }
             }
 
             id++

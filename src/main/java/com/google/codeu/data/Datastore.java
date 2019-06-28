@@ -391,5 +391,25 @@ public class Datastore {
 		return opportunitiesDueDate;
 	}
 
+    public List<Boolean> getAllOpportunityReccuuring(){
+		List<Boolean> opportunitiesReccuringBool = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+                Boolean bool = (Boolean) entity.getProperty("recurring");
+				opportunitiesReccuringBool.add(bool);
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading recurring status");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+		}				
+		return opportunitiesReccuringBool;
+	}
 
 }
