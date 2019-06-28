@@ -141,21 +141,30 @@
             var input, filter, ul, li, a, i, txtValue;
             input = document.getElementById('myInput');
             filter = input.value.toUpperCase();
+            empty = input.value.length;
+            console.log(empty)
             var ULs = document.getElementsByClassName('search');
             // console.log(ULs)
             for (j = 0; j < ULs.length; j++) {
               ul = ULs[j]
-              li = ul.getElementsByTagName('li'); 
-            
+              var li = ul.getElementsByTagName('li'); 
+              var cond = 0
+              var bool = 0
               // Loop through all list items, and hide those who don't match the search query
               for (i = 0; i < li.length; i++) {
                 a = li[i].getElementsByTagName("a")[0];
                 txtValue = a.textContent || a.innerText;
-                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                cond = (txtValue.toUpperCase().indexOf(filter) > -1)
+                if (cond) {
                   li[i].style.display = "";
+                  bool = 1
                 } else {
                   li[i].style.display = "none";
                 }
+              }
+              if (bool && empty !== 0) {li[0].parentElement.parentElement.previousElementSibling.classList.add("active");}
+              else if (li.length > 0 && empty == 0) {
+                li[0].parentElement.parentElement.previousElementSibling.classList.remove("active");
               }
             } 
           }
