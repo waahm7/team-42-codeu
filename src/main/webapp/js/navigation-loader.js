@@ -32,7 +32,7 @@ function addLoginOrLogoutLinkToNavigation() {
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
             navigationElement.appendChild(createListItem(createLink(
-              '/user-page.html?user=' + loginStatus.username, 'Your Page')));
+              '/user-page.html?user=' + loginStatus.username, 'Message Board Chat')));
             navigationElement.appendChild(
               createListItem(createLink('/stats.html', 'Statisics')));
             navigationElement.appendChild(
