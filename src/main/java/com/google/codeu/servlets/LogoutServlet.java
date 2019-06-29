@@ -34,8 +34,6 @@ public class LogoutServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    UserService userService = UserServiceFactory.getUserService();
-    String googleLogoutUrl = userService.createLogoutURL("/index.html");
 
     Cookie c1=new Cookie("ACSID","");
     Cookie c2=new Cookie("SACSID","");
@@ -46,8 +44,6 @@ public class LogoutServlet extends HttpServlet {
     response.addCookie(c1);
     response.addCookie(c2);
     response.sendRedirect("index.html");
-
-    //https://accounts.google.com/Logout?continue=https%3A%2F%2Faccounts.google.com%2FServiceLogin%3Fsacu%3D1&il=true&zx=icxpgruz0yao
 
   }
 }
