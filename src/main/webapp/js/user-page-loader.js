@@ -50,10 +50,12 @@ function showMessageFormIfViewingSelf() {
 /** Fetches messages and add them to the page. */
 function fetchMessages(button) {
 var url;
+    console.log("there:"+button);
    if(button===undefined){
      url = '/messages?user=' + parameterUsername;
   }
   else {
+
      button = encodeURIComponent(button);
      url='/messages?user='+parameterUsername+'&buttonName='+button;
   }
@@ -133,13 +135,23 @@ function fetchBlobstoreUrlAndShowForm() {
           });
       }
 
+function buttonPressed(event){
+   // fetchMessages(this.id+"");
+}
+
 
 function addPageButtons(){
        const pageNumberSection=document.getElementById("messagesPageNumbersSection");
        for(var i=1;i<=5;i++){
-            var button=document.createElement("button");
+            var button=document.createElement("input");
+            button.type="button";
             button.value=i;
-            button.innerHTML=i;
+            button.id=i;
+            button.addEventListener("click",function(){
+                fetchMessages(this.id+"");
+            });
+            //button.innerHTML=i;
+           // button.id=i;
             pageNumberSection.appendChild(button);
        }
 }
