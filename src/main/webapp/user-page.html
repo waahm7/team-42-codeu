@@ -33,13 +33,11 @@ limitations under the License.
     <h1>Message Board Chat </h1>
     <h2 id="page-title">User Page</h2>
 
-   <FORM NAME="form1" id="messagesPageNumbersSection" ACTION="/messages" METHOD="GET">
+   <FORM NAME="form1"  ACTION="/messages" METHOD="GET">
        newest
-        <INPUT TYPE="BUTTON" VALUE="1" ONCLICK="button1pressed()">
-       <INPUT TYPE="BUTTON" VALUE="2" ONCLICK="button2pressed()">
-       <INPUT TYPE="BUTTON" VALUE="3" ONCLICK="button3pressed()">
-       <INPUT TYPE="BUTTON" VALUE="4" ONCLICK="button4pressed()">
-       <INPUT TYPE="BUTTON" VALUE="5" ONCLICK="button5pressed()">
+        <div id="messagesPageNumbersSection" style="display:inline;">
+
+        </div>
        oldest
    </FORM>
 

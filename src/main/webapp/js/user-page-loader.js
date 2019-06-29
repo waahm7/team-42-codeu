@@ -135,10 +135,8 @@ function fetchBlobstoreUrlAndShowForm() {
           });
       }
 
-function buttonPressed(event){
-   // fetchMessages(this.id+"");
-}
-
+/* Return the messages according to button pressed. For example 1 means fetch latest 20 messages.
+2 means fetch messages 20 to 40 and so on. User will be able to see the last 100 messages*/
 
 function addPageButtons(){
        const pageNumberSection=document.getElementById("messagesPageNumbersSection");
@@ -150,26 +148,7 @@ function addPageButtons(){
             button.addEventListener("click",function(){
                 fetchMessages(this.id+"");
             });
-            //button.innerHTML=i;
-           // button.id=i;
             pageNumberSection.appendChild(button);
        }
 }
 
-/* Return the messages according to button pressed. For example 1 means fetch latest 20 messages.
-2 means fetch messages 20 to 40 and so on. User will be able to see the last 100 messages*/
-function button1pressed(){
-    fetchMessages("1");
-}
-function button2pressed(){
-    fetchMessages("2");
-}
-function button3pressed(){
-    fetchMessages("3");
-}
-function button4pressed(){
-    fetchMessages("4");
-}
-function button5pressed(){
-    fetchMessages("5");
-}
