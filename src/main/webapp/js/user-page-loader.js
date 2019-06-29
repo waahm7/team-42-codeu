@@ -141,19 +141,23 @@ function fetchBlobstoreUrlAndShowForm() {
 function addPageButtons(){
       fetch("/numberOfMessages").then((response) => {
         return response.text();
-      }).then((aboutMe) => {
-        console.log("count:"+aboutMe);
+      }).then((count) => {
+          var buttonCount=parseInt(count)/20;
+          //limits maximum pages
+          if(buttonCount>5)
+            buttonCount=5;
+          const pageNumberSection=document.getElementById("messagesPageNumbersSection");
+               for(var i=0;i<buttonCount;i++){
+                    var button=document.createElement("input");
+                    button.type="button";
+                    button.value=i+1;
+                    button.id=i+1;
+                    button.addEventListener("click",function(){
+                        fetchMessages(this.id+"");
+                    });
+                    pageNumberSection.appendChild(button);
+               }
       });
-       const pageNumberSection=document.getElementById("messagesPageNumbersSection");
-       for(var i=1;i<=5;i++){
-            var button=document.createElement("input");
-            button.type="button";
-            button.value=i;
-            button.id=i;
-            button.addEventListener("click",function(){
-                fetchMessages(this.id+"");
-            });
-            pageNumberSection.appendChild(button);
-       }
+
 }
 
