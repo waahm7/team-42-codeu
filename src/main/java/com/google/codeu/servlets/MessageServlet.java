@@ -21,18 +21,18 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Message;
 import com.google.gson.Gson;
-import java.io.IOException;
-import java.util.List;
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
-
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.ArrayList;
 
 /** Handles fetching and saving {@link Message} instances. */
 @WebServlet("/messages")
@@ -64,27 +64,23 @@ public class MessageServlet extends HttpServlet {
 
     List<Message> messages = datastore.getAllMessages(); //gets all the messages in datastore
     String page=request.getParameter("buttonName");
+    String numberOfPostPerPage=request.getParameter("numberOfPostsPerPage");
     int start, end;
-    int pagenumber;
-    if(page==null){
-      pagenumber=1;
-    }
-    else {
-      pagenumber = Integer.parseInt(page);
-    }
+    int pageNumber;
+    pageNumber= (page==null) ? 1 : Integer.parseInt(page);
     int total = messages.size();
-    int numberofmessages=20;
-    List<Message> newmessages =new ArrayList<>(numberofmessages);
-       pagenumber--;
-       start= pagenumber * numberofmessages;
-       end= start + numberofmessages;
+    int numberOfMessages=(numberOfPostPerPage==null) ? 20 : Integer.parseInt(numberOfPostPerPage);
+    List<Message> newMessages =new ArrayList<>(numberOfMessages);
+       pageNumber--;
+       start= pageNumber * numberOfMessages;
+       end= start + numberOfMessages;
        if(start<total){
          for(int i=start; i<end && i<total ;i++){
-           newmessages.add(messages.get(i));
+           newMessages.add(messages.get(i));
          }
        }
     Gson gson = new Gson();
-    String json = gson.toJson(newmessages);
+    String json = gson.toJson(newMessages);
     response.getWriter().println(json);
   }
 

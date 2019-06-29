@@ -50,10 +50,12 @@ function showMessageFormIfViewingSelf() {
 /** Fetches messages and add them to the page. */
 function fetchMessages(button) {
 var url;
+    console.log("there:"+button);
    if(button===undefined){
      url = '/messages?user=' + parameterUsername;
   }
   else {
+
      button = encodeURIComponent(button);
      url='/messages?user='+parameterUsername+'&buttonName='+button;
   }
@@ -135,18 +137,27 @@ function fetchBlobstoreUrlAndShowForm() {
 
 /* Return the messages according to button pressed. For example 1 means fetch latest 20 messages.
 2 means fetch messages 20 to 40 and so on. User will be able to see the last 100 messages*/
-function button1pressed(){
-    fetchMessages("1");
+
+function addPageButtons(){
+      fetch("/numberOfMessages").then((response) => {
+        return response.text();
+      }).then((count) => {
+          var buttonCount=parseInt(count)/20;
+          //limits maximum pages
+          if(buttonCount>5)
+            buttonCount=5;
+          const pageNumberSection=document.getElementById("messagesPageNumbersSection");
+               for(var i=0;i<buttonCount;i++){
+                    var button=document.createElement("input");
+                    button.type="button";
+                    button.value=i+1;
+                    button.id=i+1;
+                    button.addEventListener("click",function(){
+                        fetchMessages(this.id+"");
+                    });
+                    pageNumberSection.appendChild(button);
+               }
+      });
+
 }
-function button2pressed(){
-    fetchMessages("2");
-}
-function button3pressed(){
-    fetchMessages("3");
-}
-function button4pressed(){
-    fetchMessages("4");
-}
-function button5pressed(){
-    fetchMessages("5");
-}
+

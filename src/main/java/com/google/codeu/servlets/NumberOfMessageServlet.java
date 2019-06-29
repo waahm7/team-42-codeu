@@ -16,9 +16,8 @@
 
 package com.google.codeu.servlets;
 
-import com.google.appengine.api.users.UserService;
-import com.google.appengine.api.users.UserServiceFactory;
-import com.google.gson.JsonObject;
+import com.google.codeu.data.Datastore;
+import com.google.codeu.data.Message;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,26 +25,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * Returns login data as JSON, e.g. {"isLoggedIn": true, "username": "alovelace@codeustudents.com"}
- */
-@WebServlet("/login-status")
-public class LoginStatusServlet extends HttpServlet {
+/** Handles fetching and saving {@link Message} instances. */
+@WebServlet("/numberOfMessages")
+public class NumberOfMessageServlet extends HttpServlet {
 
+  private Datastore datastore;
+
+  @Override
+  public void init() {
+    datastore = new Datastore();
+  }
+
+  /**
+   * Responds with a JSON representation of {@link Message} data for a specific user. Responds with
+   * an empty array if the user is not provided.
+   */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    JsonObject jsonObject = new JsonObject();
-
-    UserService userService = UserServiceFactory.getUserService();
-    if (userService.isUserLoggedIn()) {
-      jsonObject.addProperty("isLoggedIn", true);
-      jsonObject.addProperty("username", userService.getCurrentUser().getEmail());
-    } else {
-      jsonObject.addProperty("isLoggedIn", false);
-    }
-
     response.setContentType("application/json");
-    response.getWriter().println(jsonObject.toString());
+    response.getWriter().println(datastore.getMessagesCount());
+
   }
 }
