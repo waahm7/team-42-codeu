@@ -24,7 +24,6 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
-import com.google.appengine.repackaged.com.google.common.base.Pair;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -232,6 +231,11 @@ public class Datastore {
 
         return messages;
     }
+    public int getMessagesCount() {
+        Query query = new Query("Message");
+        PreparedQuery results = datastore.prepare(query);
+        return results.countEntities(FetchOptions.Builder.withLimit(1000));
+    }
 
 
     public Message LongestMessage() {
@@ -303,6 +307,7 @@ public class Datastore {
         PreparedQuery results = datastore.prepare(query);
         return results.countEntities(FetchOptions.Builder.withLimit(1000));
     }
+
 
     public void storeOpportunity(Opportunity opportunity) {
         Entity opportunityEntity = new Entity("Opportunity", opportunity.getId());

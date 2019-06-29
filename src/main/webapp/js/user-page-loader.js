@@ -139,6 +139,11 @@ function fetchBlobstoreUrlAndShowForm() {
 2 means fetch messages 20 to 40 and so on. User will be able to see the last 100 messages*/
 
 function addPageButtons(){
+      fetch("/numberOfMessages").then((response) => {
+        return response.text();
+      }).then((aboutMe) => {
+        console.log("count:"+aboutMe);
+      });
        const pageNumberSection=document.getElementById("messagesPageNumbersSection");
        for(var i=1;i<=5;i++){
             var button=document.createElement("input");
