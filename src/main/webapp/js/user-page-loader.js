@@ -133,6 +133,17 @@ function fetchBlobstoreUrlAndShowForm() {
           });
       }
 
+
+function addPageButtons(){
+       const pageNumberSection=document.getElementById("messagesPageNumbersSection");
+       for(var i=1;i<=5;i++){
+            var button=document.createElement("button");
+            button.value=i;
+            button.innerHTML=i;
+            pageNumberSection.appendChild(button);
+       }
+}
+
 /* Return the messages according to button pressed. For example 1 means fetch latest 20 messages.
 2 means fetch messages 20 to 40 and so on. User will be able to see the last 100 messages*/
 function button1pressed(){

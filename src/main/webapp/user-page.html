@@ -24,7 +24,7 @@ limitations under the License.
     <script src="/js/user-page-loader.js"></script>
     <script src="/js/navigation-loader.js"></script>
   </head>
-  <body onload="addNaviMenues(); buildUI();fetchBlobstoreUrlAndShowForm()">
+  <body onload="addNaviMenues(); buildUI();fetchBlobstoreUrlAndShowForm();addPageButtons()">
     <nav>
       <ul class = "topnav" id="navigation">
       </ul>
@@ -33,7 +33,7 @@ limitations under the License.
     <h1>Message Board Chat </h1>
     <h2 id="page-title">User Page</h2>
 
-   <FORM NAME="form1" ACTION="/messages" METHOD="GET">
+   <FORM NAME="form1" id="messagesPageNumbersSection" ACTION="/messages" METHOD="GET">
        newest
         <INPUT TYPE="BUTTON" VALUE="1" ONCLICK="button1pressed()">
        <INPUT TYPE="BUTTON" VALUE="2" ONCLICK="button2pressed()">
