@@ -251,6 +251,11 @@ public class Datastore {
 
         return messages;
     }
+    public int getMessagesCount() {
+        Query query = new Query("Message");
+        PreparedQuery results = datastore.prepare(query);
+        return results.countEntities(FetchOptions.Builder.withLimit(1000));
+    }
 
 
     public Message LongestMessage() {
@@ -335,6 +340,7 @@ public class Datastore {
         PreparedQuery results = datastore.prepare(query);
         return results.countEntities(FetchOptions.Builder.withLimit(1000));
     }
+
 
     public void storeOpportunity(Opportunity opportunity) {
         Entity opportunityEntity = new Entity("Opportunity", opportunity.getId());

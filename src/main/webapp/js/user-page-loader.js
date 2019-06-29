@@ -25,8 +25,8 @@ if (!parameterUsername) {
 
 /** Sets the page title based on the URL parameter username. */
 function setPageTitle() {
-  document.getElementById('page-title').innerText = parameterUsername;
-  document.title = parameterUsername + ' - User Page';
+  document.getElementById('page-title').innerText = "Welcome \xa0\xa0" +parameterUsername + " !";
+  document.title = parameterUsername + ' - Chat';
 }
 
 /**
@@ -44,12 +44,21 @@ function showMessageFormIfViewingSelf() {
           messageForm.classList.remove('hidden');
         }
       });
-	document.getElementById('about-me-form').classList.remove('hidden');
+	//document.getElementById('about-me-form').classList.remove('hidden');
 }
 
 /** Fetches messages and add them to the page. */
-function fetchMessages() {
-  const url = '/messages?user=' + parameterUsername;
+function fetchMessages(button) {
+var url;
+    console.log("there:"+button);
+   if(button===undefined){
+     url = '/messages?user=' + parameterUsername;
+  }
+  else {
+
+     button = encodeURIComponent(button);
+     url='/messages?user='+parameterUsername+'&buttonName='+button;
+  }
   fetch(url)
       .then((response) => {
         return response.json();
@@ -57,7 +66,7 @@ function fetchMessages() {
       .then((messages) => {
         const messagesContainer = document.getElementById('message-container');
         if (messages.length == 0) {
-          messagesContainer.innerHTML = '<p>This user has no posts yet.</p>';
+          messagesContainer.innerHTML = '<p>No messages found</p>';
         } else {
           messagesContainer.innerHTML = '';
         }
@@ -96,7 +105,7 @@ function buildUI() {
   setPageTitle();
   showMessageFormIfViewingSelf();
   fetchMessages();
-  fetchAboutMe();
+ // fetchAboutMe();
 }
 
 function fetchAboutMe(){
@@ -125,3 +134,30 @@ function fetchBlobstoreUrlAndShowForm() {
             messageForm.classList.remove('hidden');
           });
       }
+
+/* Return the messages according to button pressed. For example 1 means fetch latest 20 messages.
+2 means fetch messages 20 to 40 and so on. User will be able to see the last 100 messages*/
+
+function addPageButtons(){
+      fetch("/numberOfMessages").then((response) => {
+        return response.text();
+      }).then((count) => {
+          var buttonCount=parseInt(count)/20;
+          //limits maximum pages
+          if(buttonCount>5)
+            buttonCount=5;
+          const pageNumberSection=document.getElementById("messagesPageNumbersSection");
+               for(var i=0;i<buttonCount;i++){
+                    var button=document.createElement("input");
+                    button.type="button";
+                    button.value=i+1;
+                    button.id=i+1;
+                    button.addEventListener("click",function(){
+                        fetchMessages(this.id+"");
+                    });
+                    pageNumberSection.appendChild(button);
+               }
+      });
+
+}
+
