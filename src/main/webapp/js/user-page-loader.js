@@ -142,7 +142,11 @@ function addPageButtons(){
       fetch("/numberOfMessages").then((response) => {
         return response.text();
       }).then((count) => {
-          var buttonCount=parseInt(count)/20;
+          int NumberOfMessages=20;
+          var buttonCount=parseInt(count)/NumberOfMessages;
+          if(parseInt(count)%NumberOfMessages != 0 ){  //if remaining messages then add another button
+            buttonCount++;
+          }
           //limits maximum pages
           if(buttonCount>5)
             buttonCount=5;
