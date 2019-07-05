@@ -42,6 +42,8 @@ function addLoginOrLogoutLinkToNavigation() {
             navigationElement.appendChild(
               createListItem(createLink('/translate-page.html', 'Translate')));
             navigationElement.appendChild(
+              createListItem(createLink('/opportunities.html?id=1', 'Opportunity Panel')));
+            navigationElement.appendChild(
               createListItem(createLink('/logout', 'Logout')));
 
         } else {
