@@ -2,7 +2,7 @@ package com.google.codeu.servlets;
 
 import com.google.codeu.data.Datastore;
 import com.google.codeu.data.Opportunity;
-import com.google.appengine.repackaged.com.google.gson.Gson;
+import com.google.gson.Gson;
 
 import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
-
 
 /**
  * Handles fetching and saving user data.
