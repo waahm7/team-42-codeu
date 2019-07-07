@@ -39,7 +39,7 @@ public class Opportunity {
     private Date dueDate, startDate;
     private boolean recurring;
     private long popularity;
-    private String dateFormat="yyyy/MM/dd";
+    private String dateFormat="yyyy-MM-dd";
     private String city;
     private String country;
 
