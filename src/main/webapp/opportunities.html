@@ -1,57 +1,110 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>CS OPPORTUNITIES</title>
-  <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
-  <script src = "/js/opportunity.js"></script>
-  <link rel="stylesheet" href="/css/opportunities.css">
-<script>
-  function openSlideMenu(){
-    document.getElementById('menu').style.width = '250px';
-    document.getElementById('content').style.marginLeft = '250px';
-  }
-  function closeSlideMenu(){
-    document.getElementById('menu').style.width = '0';
-    document.getElementById('content').style.marginLeft = '0';
-  }
-</script>
-</head>
-<body onload = "fetchOpportunities();addNaviMenues();">
 
-  <div id="content">
 
-    <span class="slide">
-      <a href="#" onclick="openSlideMenu()">
-        <i class="fas fa-bars"></i>
-      </a>
-    </span>
+  <head>
+    <title>CS OPPORTUNITIES</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
+    <script src = "/js/opportunity.js"></script>
+    <link rel="stylesheet" href="/css/opportunities.css">
 
-    <div id="menu" class="nav">
-      <a href="#" class="close" onclick="closeSlideMenu()">
-        <i class="fas fa-times"></i>
-      </a>
-      <ul>
-        <li><a href="opportunities.html?id=1">1</a></li>
-        <li><a href="opportunities.html?id=2">2</a></li>
-        <li><a href="opportunities.html?id=3">3</a></li>
-        <li><a href="opportunities.html?id=4">4</a></li>
-        <li><a href="opportunities.html?id=5">5</a></li>
-      </ul>
+  </head>
+  
+  <body onload= "startFunctions()">
+    <div id="loader"></div>
+      
+      <div id="menu" class="nav">
+        <span>
+          <a href="#" class="close" onclick="closeSlideMenu()">
+            <i class="fas fa-times"></i>
+          </a>
+          <p></p>
+        </span>
+        <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for Opportunities..">
+        <button class="dropdown-btn">Active
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <ul id="active-list" class="search"></ul>
+        </div>
+        
+        <button class="dropdown-btn">Archived
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <ul id="archived-list" class="search"></ul>
+        </div>
+        
+        
+        <button class="dropdown-btn">Reccuring
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <ul id="recurring-list" class="search"></ul>
+        </div>
+      
+    
+
     </div>
-		<div id="opportunity-container">
-		<h1>CS OPPORTUNITIES</h1>
-		<p></p>
-		
-		</div>
-  </div>
+      
+    <div id="content" style="display:none;" class="animate-bottom"> 
+        
+      <span class="slide">
+        <a href="#" onclick="openSlideMenu()">
+          <i class="fas fa-bars"></i>
+        </a>
+      </span>
+    
+      <div>
+        <h2 id = 'title' class='opportunity-title'> Title </h2>
+        <p></p>
+      </div>
 
-	
+      <div>
+        <image id='img' class='OpportunityImage' src=#></image>
+      </div>
+    
+      <div>
+        <p id = 'desc'> DESCRIPTION </p>
+      </div>
 
+      <div>
+        <h2 class='opportunity-title'> ScholarShip Details </h2>
+      </div>
 
+      <div id = 'details'>
+        <ul></ul>
+      </div>
 
+      <div>
+          <h2 class='opportunity-title'> Eligibility Criteria </h2>
+      </div>
 
+      <div id = 'other-req'>
+        <ul></ul>
+      </div>
 
+      <div>
+        <h3 class='opportunity-title'>
+          Due Date: 
+          <font id= 'due-date' class='blackText'> DUE STRING </font>
+        </h3>
+      </div>
 
+      <div>
+        <a id = 'applyLink' style='text-decoration: none;' target='blank' href=applyLink>
+          <button id='applyButton' onclick=applyLink>
+            <span id='applyButtonText'>Apply Now</span>
+          </button>
+        </a>
+      </div>
 
-</body>
-</html>
+      <div><h2 class='opportunity-title'> Additional Links </h2></div>
+        
+      <div id='additional-links'>
+        <ul></ul>
+      </div>
+    
+    </div>	
+  </body>
+</html> 

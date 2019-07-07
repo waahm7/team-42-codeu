@@ -24,13 +24,17 @@ import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.SortDirection;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 
 
 /**
@@ -168,16 +172,34 @@ public class Datastore {
                 System.err.println(entity.toString());
                 e.printStackTrace();
             }
-			
 		}	
-			
 		return opportunities;
-			
 	}
     
+    public List<Long> getAllOpportunityIds(){
+		List<Long> opportunitiesIds = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+				opportunitiesIds.add((long) entity.getProperty("id"));
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading opportunity id.");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+		}				
+		return opportunitiesIds;
+	}
+  
     public List<String> getAllOpportunityLocations()
 	{
 		List<String> opportunities = new ArrayList<>();
+
 		Query query = new Query("Opportunity");
                 
         PreparedQuery results = datastore.prepare(query);
@@ -202,9 +224,7 @@ public class Datastore {
 			
 	}
 
-
-
-    public List<Message> getAllMessages() {
+  public List<Message> getAllMessages() {
         List<Message> messages = new ArrayList<>();
 
         Query query = new Query("Message")
@@ -297,9 +317,22 @@ public class Datastore {
                 (Date) opportunityEntity.getProperty("dueDate"),
                 (Date) opportunityEntity.getProperty("startDate"),
                 (boolean) opportunityEntity.getProperty("recurring"),
-                (long) opportunityEntity.getProperty("popularity"));
+                (long) opportunityEntity.getProperty("popularity"),
+                (String) opportunityEntity.getProperty("city"),
+                (String) opportunityEntity.getProperty("country"));
+
 
         return opportunity;
+    }
+
+    public List<Opportunity> getAllOpportunities() {
+        List<Opportunity> opportunities = new ArrayList<>();
+        List<Long> ids = getAllOpportunityIds();
+        for (Long id : ids) {
+            Opportunity temp = getOpportunity(id);
+            opportunities.add(temp);
+        }
+        return opportunities;
     }
 
     public int getOpportunitiesCount() {
@@ -337,5 +370,52 @@ public class Datastore {
 
     }
 
+    public List<String> getAllOpportunityDueDate(){
+		List<String> opportunitiesDueDate = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+                Date dueDate = (Date) entity.getProperty("dueDate");
+                Calendar calendar = new GregorianCalendar();
+                calendar.setTime(dueDate);
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                String date = year+"-"+month+"-"+day;
+				opportunitiesDueDate.add(date);
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading opportunity date");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+		}				
+		return opportunitiesDueDate;
+	}
+
+    public List<Boolean> getAllOpportunityReccuuring(){
+		List<Boolean> opportunitiesReccuringBool = new ArrayList<>();
+		Query query = new Query("Opportunity");
+                
+        PreparedQuery results = datastore.prepare(query);
+		
+		for (Entity entity : results.asIterable()) {
+			try{
+                Boolean bool = (Boolean) entity.getProperty("recurring");
+				opportunitiesReccuringBool.add(bool);
+			}
+			
+			catch (Exception e) {
+                System.err.println("Error reading recurring status");
+                System.err.println(entity.toString());
+                e.printStackTrace();
+            }
+		}				
+		return opportunitiesReccuringBool;
+	}
 
 }
