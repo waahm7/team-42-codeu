@@ -84,16 +84,16 @@ var url;
  */
 function buildMessageDiv(message) {
   const headerDiv = document.createElement('div');
-  headerDiv.classList.add('message-header');
+  headerDiv.classList.add('message-header-background');
   headerDiv.appendChild(document.createTextNode(
       message.user + ' - ' + new Date(message.timestamp)));
 
   const bodyDiv = document.createElement('div');
-  bodyDiv.classList.add('message-body');
+  bodyDiv.classList.add('message-background');
   bodyDiv.innerHTML = message.text;
 
   const messageDiv = document.createElement('div');
-  messageDiv.classList.add('message-div');
+  /*messageDiv.classList.add('message-div');*/
   messageDiv.appendChild(headerDiv);
   messageDiv.appendChild(bodyDiv);
 
