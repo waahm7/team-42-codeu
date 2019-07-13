@@ -26,6 +26,8 @@
   border: thin solid black;
   border-radius: 5px;
   margin-top: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 /* Add a bottom border to the message header. */
@@ -47,8 +49,69 @@
 }
 
 /* to change the style of the image */
-.message-body img {
+.message-background img {
   display: block;
   margin-top: 15px;
   max-width: 40%;
+}
+.message-background {
+  background: #A9A9A9	;
+  background: linear-gradient(#D3D3D3, #A0A0A0);
+  border: 5px solid #404040;
+  border-radius: 5px;
+  color: #000000;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 15px 20px;
+  text-align: center;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.message-header-background{
+  background: #9400D3;
+  background: linear-gradient(#9400D3, #800080);
+  border: 5px solid #4B0082;
+  border-radius: 5px;
+  color: #fff;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 15px 20px;
+  margin-top: 3em;
+  text-align: center;
+  margin-left: 40px;
+  margin-right: 40px;
+}
+
+.m1{
+ background-image:url('../images/giphy.gif');
+ background-size:100% 100%;
+ background-repeat: repeat;
+}
+
+h1, h2, form {
+ font-family:"Comic Sans MS", cursive, sans-serif;
+ text-align: center;
+ color: #4d004d;
+}
+
+h1{
+ background: linear-gradient(#9400D3,#4d004d);
+ color: #fff;
+}
+
+.button {
+  background-color: #555555;
+  border: none;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button:hover {
+  color: white;
+  background-color: #4CAF50;
 }
