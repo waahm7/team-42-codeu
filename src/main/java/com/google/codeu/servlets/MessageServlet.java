@@ -61,8 +61,16 @@ public class MessageServlet extends HttpServlet {
       response.getWriter().println("[]");
       return;
     }
+	
+	String content = request.getParameter("content");
+	List<Message> messages = datastore.getAllMessages(); //gets all the messages in datastore
+	
+	
+	if (content != null && !content.equals("")){
+		messages = datastore.getSearchedMessages(content); //gets all the messages which contains the searched term in datastore
+	}
 
-    List<Message> messages = datastore.getAllMessages(); //gets all the messages in datastore
+
     String page=request.getParameter("buttonName");
     String numberOfPostPerPage=request.getParameter("numberOfPostsPerPage");
     int start, end;

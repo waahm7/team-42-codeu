@@ -17,6 +17,7 @@
 // Get ?user=XYZ parameter value
 const urlParams = new URLSearchParams(window.location.search);
 const parameterUsername = urlParams.get('user');
+const parameterSearch = urlParams.get('content');
 
 // URL must include ?user=XYZ parameter. If not, redirect to homepage.
 if (!parameterUsername) {
@@ -47,18 +48,33 @@ function showMessageFormIfViewingSelf() {
 	//document.getElementById('about-me-form').classList.remove('hidden');
 }
 
+function isEmpty(str) {
+    return (!str || 0 === str.length);
+}
+
 /** Fetches messages and add them to the page. */
 function fetchMessages(button) {
+	
+	console.log(urlParams.toString());
+	console.log(parameterSearch);
+	console.log(parameterUsername);
 var url;
     console.log("there:"+button);
    if(button===undefined){
-     url = '/messages?user=' + parameterUsername;
+     //url = '/messages?user=' + parameterUsername;
+	 if (urlParams.has('content')){
+		url='/messages?user='+parameterUsername+'&content='+parameterSearch;
+	 }
+	 else {
+		 url='/messages?user='+parameterUsername;
+	 }
   }
   else {
 
      button = encodeURIComponent(button);
      url='/messages?user='+parameterUsername+'&buttonName='+button;
   }
+  
   fetch(url)
       .then((response) => {
         return response.json();
@@ -75,6 +91,17 @@ var url;
           messagesContainer.appendChild(messageDiv);
         });
       });
+}
+
+
+
+
+
+function doSearch()
+{
+	const content = document.getElementById('search');
+	window.location.href = "/user-page.html?user=" + parameterUsername + '&content=' + content.value;
+
 }
 
 /**
