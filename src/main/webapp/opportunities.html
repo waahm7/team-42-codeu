@@ -7,10 +7,12 @@
     <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
     <script src = "/js/opportunity.js"></script>
     <link rel="stylesheet" href="/css/opportunities.css">
+    <script src="/js/navigation-loader.js"></script>
+    <link rel="stylesheet" href="/css/navigation-loader.css">
 
   </head>
   
-  <body onload= "startFunctions()">
+  <body onload= "addNaviMenues(); startFunctions()">
     <div id="loader"></div>
       
       <div id="menu" class="nav">
@@ -20,6 +22,16 @@
           </a>
           <p></p>
         </span>
+
+        <button class="dropdown-btn">Menu
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+          <ul class = "topnav" id="navigation"></ul>
+        </div>
+
+
+
         <input type="text" id="myInput" onkeyup="searchFunction()" placeholder="Search for Opportunities..">
         <button class="dropdown-btn">Active
           <i class="fa fa-caret-down"></i>

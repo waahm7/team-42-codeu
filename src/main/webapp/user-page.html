@@ -19,49 +19,63 @@ limitations under the License.
   <head>
     <title>User Page</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/main.css">
-    <link rel="stylesheet" href="/css/user-page.css">
-    <script src="/js/user-page-loader.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
     <script src="/js/navigation-loader.js"></script>
+    <script src="/js/user-page-loader.js"></script>
+    <link rel="stylesheet" href="/css/navigation-loader.css">
+    <!-- <link rel="stylesheet" href="/css/main.css"> -->
+    <link rel="stylesheet" href="/css/user-page.css">
+
   </head>
-  <body onload="addNaviMenues(); buildUI();fetchBlobstoreUrlAndShowForm();addPageButtons()">
-    <nav>
-      <ul class = "topnav" id="navigation">
-      </ul>
-    </nav>
+  <body onload="loadFunc(); addNaviMenues(); buildUI(); fetchBlobstoreUrlAndShowForm();addPageButtons()">
+    <div id="loader"></div>
 
-    <h1>Message Board Chat </h1>
-    <h2 id="page-title">User Page</h2>
+    <div id="menu" class="nav">
+      <span>
+        <a href="#" class="close" onclick="closeSlideMenu()">
+          <i class="fas fa-times"></i>
+        </a>
+        <p></p>
+        <ul class = "topnav" id="navigation">
+        </ul>
+      </span>
+    </div>
+  
+    <div id="content" style="display:none;" class="animate-bottom">
 
-   <FORM NAME="form1"  ACTION="/messages" METHOD="GET">
-       newest
-        <div id="messagesPageNumbersSection" style="display:inline;">
-
-        </div>
-       oldest
-   </FORM>
-
-    <form id="my-form" class="hidden" method="POST" enctype="multipart/form-data">
-        <p>Type some text:</p>
-        <textarea name="message"></textarea>
-        <br/>
-        <p>Upload an image(jpeg/jpg/png/gif):</p>
-        <input type="file" name="image">
-        <br/><br/>
-        <button class="button">Submit</button>
-    </form>
-	<div>
-	
-		<form 
-		style = "position:absolute; 
-				right:0;" onsubmit = 'return false;'>
-			<input type="text" placeholder="Search" id = "search">
-			<input type="submit" value="Search" onclick = "doSearch()">
-		</form> 
-	</div>
-
-    <div id="message-container" class="m1">Loading...</div>
+      <span class="slide">
+        <a href="#" onclick="openSlideMenu()">
+          <i class="fas fa-bars"></i>
+        </a>
+      </span>
+    
 
 
+      <h1>Message Board Chat </h1>
+      <h2 id="page-title">User Page</h2>
+      <FORM NAME="form1"  ACTION="/messages" METHOD="GET">
+          newest
+            <div id="messagesPageNumbersSection" style="display:inline;"> </div>
+          oldest
+      </FORM>
+      <form id="my-form" class="hidden" method="POST" enctype="multipart/form-data">
+          <p>Type some text:</p>
+          <textarea name="message"></textarea>
+          <br/>
+          <p>Upload an image(jpeg/jpg/png/gif):</p>
+          <input type="file" name="image">
+          <br/><br/>
+          <button class="button">Submit</button>
+      </form>
+      <div>
+          <form 
+          style = "position:absolute; 
+              right:0;" onsubmit = 'return false;'>
+            <input type="text" placeholder="Search" id = "search">
+            <input type="submit" value="Search" onclick = "doSearch()">
+          </form> 
+      </div>
+      <div id="message-container" class="m1">Loading...</div>
+    </div>
   </body>
 </html>
