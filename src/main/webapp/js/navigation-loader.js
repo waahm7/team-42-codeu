@@ -40,6 +40,8 @@ function addLoginOrLogoutLinkToNavigation() {
           navigationElement.appendChild(
             createListItem(createLink('/user-page.html?user=' + loginStatus.username, 'Message Board Chat')));
           navigationElement.appendChild(
+            createListItem(createLink('/map.html', 'Opportunity Maps')));
+          navigationElement.appendChild(
             createListItem(createLink('/logout', 'Logout')));
 
         } else {
