@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Catamaran:800');
+
+body {
+	font-family: 'Catamaran', sans-serif;
+}
+.nav {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	left: 0;
+	background-color: #2D3135;
+	opacity: .9;
+	overflow-x: hidden;
+	padding-top: 60px;
+	transition: 0.7s;
+}
+.nav ul {
+	padding: 0;
+}
+.nav li:hover {
+	border-left: 9px solid #3E84C1;
+	background-color: #34383D;
+}
+.nav a {
+	display: block;
+	padding: 20px 30px;
+	font-size: 25px;
+	text-decoration: none;
+	color: #ccc;
+}
+.nav a:hover {
+	color: #fff;
+	transition: 0.4s;
+}
+.nav .close {
+	position: absolute;
+	top: 0;
+	right: 22px;
+	margin-left: 50px;
+	font-size: 30px
+}
+.slide a {
+	color: #2D3135;
+	font-size: 36px;
+}
+
+#content {
+	padding: 20px;
+	transition: margin-left 0.7s;
+	overflow: hidden;
+	width: 100%;
+}
+
+  
+  #loader {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	z-index: 1;
+	width: 150px;
+	height: 150px;
+	margin: -75px 0 0 -75px;
+	border: 16px solid #f3f3f3;
+	border-radius: 50%;
+	border-top: 16px solid #3498db;
+	width: 120px;
+	height: 120px;
+	-webkit-animation: spin 2s linear infinite;
+	animation: spin 2s linear infinite;
+  }
+  
+  @-webkit-keyframes spin {
+	0% { -webkit-transform: rotate(0deg); } 
+	100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+	0% { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
+  }
+  
+  /* Add animation to "page content" */
+  .animate-bottom {
+	position: relative;
+	-webkit-animation-name: animatebottom;
+	-webkit-animation-duration: 1s;
+	animation-name: animatebottom;
+	animation-duration: 1s
+  }
+  
+  @-webkit-keyframes animatebottom {
+	from { bottom:-100px; opacity:0 } 
+	to { bottom:0px; opacity:1 }
+  }
+  
+  @keyframes animatebottom { 
+	from{ bottom:-100px; opacity:0 } 
+	to{ bottom:0; opacity:1 }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

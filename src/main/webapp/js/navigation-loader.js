@@ -93,3 +93,26 @@ function createLink(url, text) {
   linkElement.href = url;
   return linkElement;
 }
+
+
+var myVar;
+function loadFunc() {
+  myVar = setTimeout(showPage, 700);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+
+function openSlideMenu(){
+  document.getElementById('menu').style.width = '250px';
+  document.getElementById('content').style.marginLeft = '250px';
+  document.getElementById('content').style.opacity = '0.5';
+  
+}
+function closeSlideMenu(){
+  document.getElementById('menu').style.width = '0';
+  document.getElementById('content').style.marginLeft = '0';
+  document.getElementById('content').style.opacity = '1';
+}
