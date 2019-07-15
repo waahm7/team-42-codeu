@@ -31,10 +31,8 @@ function addLoginOrLogoutLinkToNavigation() {
       })
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
-            navigationElement.appendChild(
-              createListItem(createLink('/', 'Home')));
-            navigationElement.appendChild(
-              createListItem(createLink('/user-page.html?user=' + loginStatus.username, 'Message Board Chat')));
+          navigationElement.appendChild(
+            createListItem(createLink('/', 'Home')));
             // navigationElement.appendChild(
             //   createListItem(createLink('/stats.html', 'Statisics')));
             // navigationElement.appendChild(
@@ -43,10 +41,12 @@ function addLoginOrLogoutLinkToNavigation() {
             //   createListItem(createLink('/feed.html', 'Feeds')));
             // navigationElement.appendChild(
             //   createListItem(createLink('/translate-page.html', 'Translate')));
-            navigationElement.appendChild(
-              createListItem(createLink('/opportunities.html?id=1', 'Opportunity Panel')));
-            navigationElement.appendChild(
-              createListItem(createLink('/logout', 'Logout')));
+          navigationElement.appendChild(
+            createListItem(createLink('/opportunities.html?id=1', 'Opportunity Panel')));
+          navigationElement.appendChild(
+            createListItem(createLink('/user-page.html?user=' + loginStatus.username, 'Message Board Chat')));
+          navigationElement.appendChild(
+          createListItem(createLink('/logout', 'Logout')));
 
         } else {
 
