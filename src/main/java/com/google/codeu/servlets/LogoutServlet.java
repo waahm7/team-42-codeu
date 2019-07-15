@@ -18,11 +18,13 @@ package com.google.codeu.servlets;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
-import java.io.IOException;
+
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Redirects the user to the Google logout page, which then redirects to the homepage.
@@ -32,8 +34,16 @@ public class LogoutServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    UserService userService = UserServiceFactory.getUserService();
-    String googleLogoutUrl = userService.createLogoutURL("/index.html");
-    response.sendRedirect(googleLogoutUrl);
+
+    Cookie c1=new Cookie("ACSID","");
+    Cookie c2=new Cookie("SACSID","");
+    c1.setMaxAge(0);
+    c2.setMaxAge(0);
+    c1.setPath("/");
+    c2.setPath("/");
+    response.addCookie(c1);
+    response.addCookie(c2);
+    response.sendRedirect("index.html");
+
   }
 }
