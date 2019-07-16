@@ -32,10 +32,6 @@ function addLoginOrLogoutLinkToNavigation() {
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
           navigationElement.appendChild(
-            createListItem(createLink('/index.html', 'Home')));
-          navigationElement.appendChild(
-            createListItem(createLink('/aboutus.html', 'About Us')));
-          navigationElement.appendChild(
             createListItem(createLink('/opportunities.html?id=1', 'Opportunity Panel')));
           navigationElement.appendChild(
             createListItem(createLink('/user-page.html?user=' + loginStatus.username, 'Message Board Chat')));
@@ -43,9 +39,7 @@ function addLoginOrLogoutLinkToNavigation() {
             createListItem(createLink('/map.html', 'Opportunity Maps')));
           navigationElement.appendChild(
             createListItem(createLink('/logout', 'Logout')));
-
         } else {
-
            navigationElement.appendChild(
               createListItem(createLink('/index.html', 'CS Opportunities Portal for Pakistani Students   ')));
            navigationElement.appendChild(
