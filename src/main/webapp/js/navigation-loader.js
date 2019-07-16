@@ -31,20 +31,18 @@ function addLoginOrLogoutLinkToNavigation() {
       })
       .then((loginStatus) => {
         if (loginStatus.isLoggedIn) {
-            navigationElement.appendChild(createListItem(createLink(
-              '/user-page.html?user=' + loginStatus.username, 'Message Board Chat')));
-            navigationElement.appendChild(
-              createListItem(createLink('/stats.html', 'Statisics')));
-            navigationElement.appendChild(
-              createListItem(createLink('/community.html', 'Community')));
-            navigationElement.appendChild(
-              createListItem(createLink('/feed.html', 'Feeds')));
-            navigationElement.appendChild(
-              createListItem(createLink('/translate-page.html', 'Translate')));
-            navigationElement.appendChild(
-              createListItem(createLink('/opportunities.html?id=1', 'Opportunity Panel')));
-            navigationElement.appendChild(
-              createListItem(createLink('/logout', 'Logout')));
+          navigationElement.appendChild(
+            createListItem(createLink('/index.html', 'Home')));
+          navigationElement.appendChild(
+            createListItem(createLink('/aboutus.html', 'About Us')));
+          navigationElement.appendChild(
+            createListItem(createLink('/opportunities.html?id=1', 'Opportunity Panel')));
+          navigationElement.appendChild(
+            createListItem(createLink('/user-page.html?user=' + loginStatus.username, 'Message Board Chat')));
+          navigationElement.appendChild(
+            createListItem(createLink('/map.html', 'Opportunity Maps')));
+          navigationElement.appendChild(
+            createListItem(createLink('/logout', 'Logout')));
 
         } else {
 
@@ -92,4 +90,27 @@ function createLink(url, text) {
   linkElement.appendChild(document.createTextNode(text));
   linkElement.href = url;
   return linkElement;
+}
+
+
+var myVar;
+function loadFunc() {
+  myVar = setTimeout(showPage, 700);
+}
+
+function showPage() {
+  document.getElementById("loader").style.display = "none";
+  document.getElementById("content").style.display = "block";
+}
+
+function openSlideMenu(){
+  document.getElementById('menu').style.width = '250px';
+  document.getElementById('content').style.marginLeft = '250px';
+  document.getElementById('content').style.opacity = '0.5';
+  
+}
+function closeSlideMenu(){
+  document.getElementById('menu').style.width = '0';
+  document.getElementById('content').style.marginLeft = '0';
+  document.getElementById('content').style.opacity = '1';
 }

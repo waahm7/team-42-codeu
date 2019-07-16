@@ -2,25 +2,40 @@
 <html>
 <head>
     <title>Community Page</title>
-    <link rel="stylesheet" href="/css/main.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
     <script src="/js/community.js"></script>
     <script src="/js/navigation-loader.js"></script>
-
-
+    <link rel="stylesheet" href="/css/navigation-loader.css">
 </head>
-<body onload="addNaviMenues(); buildUI()">
 
-<div id="content">
-        <nav>
-          <ul class = "topnav" id="navigation">
-          </ul>
-        </nav>
+<body onload="loadFunc(); addNaviMenues(); buildUI()">
+  <div id="loader"></div>
+
+  <div id="menu" class="nav">
+    <span>
+      <a href="#" class="close" onclick="closeSlideMenu()">
+        <i class="fas fa-times"></i>
+      </a>
+      <p></p>
+      <ul class = "topnav" id="navigation">
+      </ul>
+    </span>
+  </div>
+
+  <div id="content" style="display:none;" class="animate-bottom">
+
+      <span class="slide">
+        <a href="#" onclick="openSlideMenu()">
+          <i class="fas fa-bars"></i>
+        </a>
+      </span>
     
 
-    <h1>Community Page</h1>
-    <p>Here is a list of every user who has posted a message:</p>
-    <hr/>
-    <ul id="list">Loading...</ul>
-</div>
+      <h1>Community Page</h1>
+      <p>Here is a list of every user who has posted a message:</p>
+      <hr/>
+      <ul id="list">Loading...</ul>
+
+  </div>
 </body>
 </html>
