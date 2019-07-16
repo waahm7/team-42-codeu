@@ -1,10 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <script defer src="https://use.fontawesome.com/releases/v5.6.3/js/all.js"></script>
+    <link rel="stylesheet" href="/css/navigation-loader.css">
+    <script src="/js/navigation-loader.js"></script>
     <title>Opportunity Map</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src='/js/config.js'></script>
+
+   <!-- <script src='/js/config.js'></script>-->
 
     <script>
         const mapAPI = config.api
@@ -85,9 +89,32 @@
 
 </head>
 
-<body onload="getCoordinates();">
- <h1>Opportunities Map</h1>
- <div id="map" ></div>
-</body>
+<body onload="loadFunc();addNaviMenues();buildUI();getCoordinates();">
+<div id="loader"></div>
 
+<div id="menu" class="nav">
+      <span>
+        <a href="#" class="close" onclick="closeSlideMenu()">
+          <i class="fas fa-times"></i>
+        </a>
+        <p></p>
+        <ul class = "topnav" id="navigation">
+        </ul>
+      </span>
+</div>
+
+<div id="content" style="display:none;" class="animate-bottom">
+
+      <span class="slide">
+        <a href="#" onclick="openSlideMenu()">
+          <i class="fas fa-bars"></i>
+        </a>
+      </span>
+
+    <h1>Opportunities Map</h1>
+    <div id="map" ></div>
+
+</div>
+
+</body>
 </html>
