@@ -38,8 +38,6 @@ function addLoginOrLogoutLinkToNavigation() {
           navigationElement.appendChild(
             createListItem(createLink('/map.html', 'Opportunity Maps')));
           navigationElement.appendChild(
-            createListItem(createLink('/aboutus.html', 'About Us')));
-          navigationElement.appendChild(
             createListItem(createLink('/logout', 'Logout')));
         } else {
            navigationElement.appendChild(
