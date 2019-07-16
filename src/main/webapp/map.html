@@ -8,10 +8,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script src='/js/config.js'></script>
+    <!--<script src='/js/config.js'></script>-->
 
     <script>
-        const mapAPI = config.api
+        const mapAPI = config.key
         var script = document.createElement( 'script' );
         script.type = 'text/javascript';
         script.src = "https://maps.googleapis.com/maps/api/js?key=" + mapAPI;
@@ -20,8 +20,8 @@
 
     <script>  
         function getCoordinates(){
-            const mapAPI = config.api
-            
+            const mapAPI = config.key
+            console.log("hello");
             const map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: 0, lng: 0},
                 zoom:3
@@ -67,6 +67,8 @@
                             } else {
                             marker.setAnimation(google.maps.Animation.BOUNCE);
                             }
+
+
                         }
                     });
                 });
@@ -89,7 +91,10 @@
 
 </head>
 
-<body onload="loadFunc();addNaviMenues();buildUI();getCoordinates();">
+
+
+<body onload="getCoordinates();loadFunc();addNaviMenues();">
+
 <div id="loader"></div>
 
 <div id="menu" class="nav">
@@ -111,10 +116,10 @@
         </a>
       </span>
 
-    <h1>Opportunities Map</h1>
-    <div id="map" ></div>
 
 </div>
+<h1>Opportunities Map</h1>
+<div id="map" ></div>
 
 </body>
 </html>
