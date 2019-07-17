@@ -19,6 +19,7 @@ package com.google.codeu.servlets;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,6 @@ public class LogoutServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
     Cookie c1=new Cookie("ACSID","");
     Cookie c2=new Cookie("SACSID","");
     c1.setMaxAge(0);
