@@ -33,10 +33,6 @@ public class LoginServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-
-    request.getSession().setAttribute("logoutstatus", false); // add to session
-
-
     UserService userService = UserServiceFactory.getUserService();
 
     // If the user is already logged in, redirect to their page

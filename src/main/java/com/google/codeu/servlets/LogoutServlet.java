@@ -35,8 +35,6 @@ public class LogoutServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    request.getSession().setAttribute("logoutstatus", true); // add to session
-
     Cookie c1=new Cookie("ACSID","");
     Cookie c2=new Cookie("SACSID","");
     c1.setMaxAge(0);
