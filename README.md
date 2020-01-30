@@ -1,1 +1,1 @@
-# codeu-starter-project
+Collaborated with a team of 5 people, 4 students, and a Google engineer as a mentor to design and implement a web application which curates CS opportunities for Pakistani students. It uses Java, JavaScript, HTML, CSS, and leverages various Google Cloud Platform APIs including App Engine and Datastore.
