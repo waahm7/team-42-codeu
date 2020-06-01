@@ -41,7 +41,7 @@ overflow: hidden;
 }
 .row {
   display: flex;
-  transform:translate(0%,40%);
+  transform:translate(0%,15%);
   
 }
 .container {
