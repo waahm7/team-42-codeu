@@ -7,6 +7,9 @@ Collaborated with a team of 5 people, 4 students, and a Google engineer as a men
 ## Technologies
 It uses Java, JavaScript, HTML, CSS, and leverages various Google Cloud Platform APIs including App Engine and Datastore.
 
+## Video
+https://youtu.be/HOGOAmrpMHI
+
 ## Run Code
 ```
 localhost devserver
